@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+    <name>Mediamanager</name>
+    <version>1.0</version>
+    <creationDate>November 2011</creationDate>
+    <author>Dioscouri</author>
+    <authorEmail>info@dioscouri.com</authorEmail>
+    <authorUrl>http://www.dioscouri.com</authorUrl>
+    <copyright>2011 Dioscouri.com</copyright>
+    <copyrightHolder>Dioscouri.com</copyrightHolder>
+    <license>GNU General Public License v2</license>
+    <description>A Mediamanager extension for Joomla</description>
+
+	<!-- Application/site -->    
+	<files folder="site">
+		<file>mediamanager.php</file>
+		<file>controller.php</file>
+        <file>router.php</file>
+		<file>index.html</file>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<languages folder="languages/site">
+		<language tag="en-GB">en-GB.com_mediamanager.ini</language>
+	</languages>
+	
+	<!-- Application/administrator -->
+	<administration>
+		<menu img="../media/com_mediamanager/images/mediamanager_16.png">COM_MEDIAMANAGER</menu>
+
+		<files folder="admin">
+			<file>mediamanager.php</file>
+			<file>controller.php</file>
+			<file>defines.php</file>
+			<file>index.html</file>
+			<folder>controllers</folder>
+            <folder>elements</folder>
+			<folder>helpers</folder>
+			<folder>install</folder>
+			<folder>library</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+
+		<languages folder="languages/admin">
+			<language tag="en-GB">en-GB.com_mediamanager.ini</language>
+            <language tag="en-GB">en-GB.com_mediamanager.sys.ini</language>
+            <language tag="en-GB">en-GB.com_mediamanager.menu.ini</language>
+		</languages>
+	</administration>
+	
+	<!-- Installation -->
+	<install>
+		<sql>
+			<file>install.sql</file>
+		</sql>
+	</install>
+	
+	<installfile>install.php</installfile>
+	<uninstallfile>uninstall.php</uninstallfile>
+
+	<!--  Media -->
+	<media destination="com_mediamanager" folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+		<folder>menus</folder>
+		<file>index.html</file>
+	</media>
+		
+    <!-- Modules -->    
+    <modules>
+        <!-- <module module="mod_whatever" publish="true" client="site"/> -->
+ 
+        <module module="modules/mod_mediamanager_categories" client="site" />
+        <module module="modules/mod_mediamanager_media" client="site" />
+
+    </modules>
+
+    <!-- Plugins -->
+    <plugins>
+        <!-- Instructions: plugin="package_folder_containing_plugin_files" element="plugin_filename" -->
+        <plugin plugin="plugins/mediamanager_audio_jwplayer" publish="true" group="mediamanager" element="audio_jwplayer" />
+        <plugin plugin="plugins/mediamanager_plugin_content" publish="true" group="content" element="mediamanager" />
+        <plugin plugin="plugins/mediamanager_plugin_jplayer" publish="true" group="mediamanager" element="video_jplayer" />
+        <plugin plugin="plugins/mediamanager_plugin_search" publish="true" group="search" element="mediamanager" />
+        <plugin plugin="plugins/mediamanager_slideshow_default" publish="true" group="mediamanager" element="slideshow_default" />
+        <plugin plugin="plugins/mediamanager_slideshow_pikachoose" publish="true" group="mediamanager" element="slideshow_pikachoose" />        
+        <plugin plugin="plugins/mediamanager_video_jwplayer" publish="true" group="mediamanager" element="video_jwplayer" />
+    </plugins>
+</install>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="mediamanager" method="upgrade">
+	<name>Mediamanager - Audio - JWPlayer</name>
+	<author>Dioscouri Design</author>
+	<authorEmail>info@dioscouri.com</authorEmail>
+	<authorUrl>http://www.dioscouri.com</authorUrl>
+	<version>1.0.0</version>
+	<creationDate>August 2010</creationDate>
+	<copyright>2010 Dioscouri.com</copyright>
+	<license>GNU General Public License</license>
+	<description>JWPlayer Audio handler for MediaManager</description>
+
+	<files>
+		<filename plugin="audio_jwplayer">audio_jwplayer.php</filename>
+		<folder>audio_jwplayer</folder>
+	</files>
+
+	<languages folder="languages">
+		<language tag="en-GB">en-GB.plg_mediamanager_audio_jwplayer.ini</language>
+	</languages>
+
+</install>

@@ -1,0 +1,22 @@
+.slideshowdefault {
+    position: relative;
+}
+
+.slideshowdefault .control {
+    bottom: 10px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    text-indent: -10000px;
+    width: 16px;
+    right: 10px;
+}
+
+.slideshowdefault .control.prev {
+    background: url("../images/nav-left.png") no-repeat scroll 0 0 transparent;
+    right: 30px;
+}
+
+.slideshowdefault .control.next {
+    background: url("../images/nav-right.png") no-repeat scroll 0 0 transparent;
+}

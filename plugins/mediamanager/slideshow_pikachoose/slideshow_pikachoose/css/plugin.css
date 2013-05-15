@@ -1,0 +1,22 @@
+.slideshowpikachoose {
+    position: relative;
+}
+
+.slideshowpikachoose .control {
+    bottom: 10px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    text-indent: -10000px;
+    width: 16px;
+    right: 10px;
+}
+
+.slideshowpikachoose .control.prev {
+    background: url("../images/nav-left.png") no-repeat scroll 0 0 transparent;
+    right: 30px;
+}
+
+.slideshowpikachoose .control.next {
+    background: url("../images/nav-right.png") no-repeat scroll 0 0 transparent;
+}

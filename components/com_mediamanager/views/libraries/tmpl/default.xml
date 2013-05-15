@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_MEDIAMANAGER_LIBRARIES_DEFAULT_LAYOUT" hidden="true">
+		<message>
+			<![CDATA[COM_MEDIAMANAGER_LIBRARIES_DEFAULT_LAYOUT_DESC]]>
+		</message>
+	</layout>
+    
+    <!-- Joomla 1.6+ only -->
+    <fields name="request">
+        <fieldset name="request" addfieldpath="/administrator/components/com_mediamanager/elements">
+            <!-- <field name="reset" type="hidden" default="1" />  -->
+            
+            <field name="library_id" type="mediamanagerlibrary"
+                label="Select a Library"
+                required="true"
+                description="The rules for this library will determine default filtering"
+            />
+        </fieldset>
+    </fields>
+    
+    <!-- Add fields to the parameters object for the layout. -->
+    <fields name="params">
+        <fieldset name="params"
+            label="Basic Options"
+        >
+            <field name="reset"
+                type="radio"
+                description="Reset"
+                label="Reset"
+                default="1"
+            >
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </field>
+        </fieldset>
+    </fields>
+    
+	<state>
+		<name>COM_MEDIAMANAGER_LIBRARIES_DEFAULT_LAYOUT</name>
+		<description>COM_MEDIAMANAGER_LIBRARIES_DEFAULT_LAYOUT_DESC</description>
+        <url addpath="/administrator/components/com_mediamanager/elements">
+            <param name="id" type="mediamanagerlibrary" section="com_mediamanager" default="" label="Select Library" description="A Library ID" />
+        </url>
+	</state>
+    
+    
+</metadata>

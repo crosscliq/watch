@@ -1,0 +1,1 @@
+<?php die("Access Denied"); ?>#x#a:1:{s:31:"#__mediamanager_mediacategories";a:3:{s:16:"mediacategory_id";s:3:"int";s:8:"media_id";s:3:"int";s:11:"category_id";s:3:"int";}}

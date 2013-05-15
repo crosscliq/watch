@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="mediamanager" method="upgrade">
+	<name>Mediamanager - Slideshow - Kiosk</name>
+	<author>Dioscouri Design</author>
+	<authorEmail>info@dioscouri.com</authorEmail>
+	<authorUrl>http://www.dioscouri.com</authorUrl>
+	<version>1.0.0</version>
+	<creationDate>August 2010</creationDate>
+	<copyright>2010 Dioscouri.com</copyright>
+	<license>GNU General Public License</license>
+	<description>Kiosk slideshow handler for MediaManager</description>
+
+	<files>
+		<filename plugin="slideshow_default">slideshow_default.php</filename>
+		<folder>slideshow_default</folder>
+	</files>
+
+	<languages folder="languages">
+		<language tag="en-GB">en-GB.plg_mediamanager_slideshow_default.ini</language>
+	</languages>
+
+	<params>
+		<param type="spacer" default="DEW DEFAULT SETTINGS" />
+		<param name="slideshow_default_media_type" type="list" default="" label="Media Type" description="Will determine what type of player is displayed">
+  			<option value="audio">audio</option>
+  			<option value="video">video</option>
+		</param>
+		<param name="slideshow_default_volume" type="text" default="1.0" label="Volume Level" description="Set the volume level for the plugin" />
+		<param name="slideshow_default_background_colour" type="text" default="" label="Background Colour" description="Set the background colour for the jplayer plugin" />
+		<param name="slideshow_default_cssselector_ancestor" type="text" default="" label="CSS Ancestor" description="" />
+		<param name="slideshow_default_css_selector" type="text" default="" label="CSS Selector" />
+		<param name="slideshow_default_error_alerts" type="radio" default="0" label="Error Alerts" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+		<param name="slideshow_default_warning_alerts" type="radio" default="0" label="Warning Alerts" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_preload" type="radio" default="0" label="Preload Media" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+		<param name="slideshow_default_load" type="text" default="" label="Load Media" description=""/>
+        <param name="slideshow_default_auto_play" type="radio" default="1" label="Auto Play" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_start_play" type="text" default="" label="Start Play/ Pause On" description=""/>
+        <param type="spacer" default="Playback Controls" />
+        <param name="slideshow_default_play_button" type="radio" default="1" label="Play Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_pause_button" type="radio" default="1" label="Pause Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_stop_button" type="radio" default="1" label="Stop Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_previous_button" type="radio" default="1" label="Previous Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_next_button" type="radio" default="1" label="Next Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_progress_bar" type="radio" default="1" label="Progress Bar" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_volume_bar" type="radio" default="1" label="Volume Bar" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_mute_button" type="radio" default="1" label="Mute Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_unmute_button" type="radio" default="1" label="Unmute Button" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_current_time" type="radio" default="1" label="Current Time" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_duration" type="radio" default="1" label="Duration Time" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="slideshow_default_play_list" type="radio" default="1" label="Play List" description="">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+	</params>
+
+</install>

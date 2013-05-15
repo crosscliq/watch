@@ -1,0 +1,1 @@
+<?php die("Access Denied"); ?>#x#a:1:{s:26:"#__mediamanager_mediafiles";a:4:{s:12:"mediafile_id";s:3:"int";s:8:"media_id";s:3:"int";s:7:"file_id";s:3:"int";s:5:"value";s:4:"text";}}

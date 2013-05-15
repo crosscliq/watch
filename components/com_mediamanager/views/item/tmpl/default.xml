@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT" hidden="true">
+		<message>
+			<![CDATA[COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT_DESC]]>
+		</message>
+	</layout>
+	<state>
+		<name>COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT</name>
+		<description>COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT_DESC</description>
+        <url addpath="/administrator/components/com_mediamanager/elements">
+            <param name="filter_library" type="mediamanagerlibrary" section="com_mediamanager" default="" label="Select Library" description="A Library ID" />
+        </url>
+	</state>
+</metadata>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT">
+		<message>
+			<![CDATA[COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT_DESC]]>
+		</message>
+	</layout>
+    
+    <!-- Joomla 1.6+ only -->
+    <fields name="request">
+        <fieldset name="request" addfieldpath="/administrator/components/com_mediamanager/elements">
+            <field name="task" type="hidden" default="view" />
+            
+            <field name="id" type="mediamanagermedia"
+                label="COM_MEDIAMANAGER_SELECT_MEDIA"
+                required="true"
+                description="COM_MEDIAMANAGER_SELECT_MEDIA"
+            />
+
+        </fieldset>
+    </fields>
+    
+    <!-- Joomla 1.5 only -->
+	<state>
+		<name>COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT</name>
+		<description>COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT_DESC</description>
+        <url addpath="/administrator/components/com_mediamanager/elements">
+            <param name="id" type="mediamanagermedia" section="com_mediamanager" default="" label="Select a Media Item" description="A MediaManager Media ID" />
+            <param name="task" type="hidden" section="com_mediamanager" default="view" />
+        </url>
+	</state>
+</metadata>

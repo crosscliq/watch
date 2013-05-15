@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="search" method="upgrade">
+    <name>Search - Mediamanager</name>
+    <version>0.1.0</version>
+    <creationDate>August 2011</creationDate>
+    <author>Dioscouri</author>
+    <authorEmail>info@dioscouri.com</authorEmail>
+    <authorUrl>http://www.dioscouri.com</authorUrl>
+    <copyright>2010 Dioscouri.com</copyright>
+    <license>GNU General Public License v2</license>
+    <description>Enables searching the Mediamanager in core search component</description>
+
+	<files>
+		<filename plugin="mediamanager">mediamanager.php</filename>
+	</files>
+	
+    <languages folder="languages">
+        <language tag="en-GB">en-GB.plg_search_mediamanager.ini</language>
+    </languages>
+	
+	<params>
+        <param name="title" type="text" size="50" default="Media" label="Search Mediamanager Title" description="Search Mediamanager Title"/>
+	</params>
+</install>

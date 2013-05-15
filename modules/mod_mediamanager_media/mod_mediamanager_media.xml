@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0" method="upgrade" client="site">
+    <name>Mediamanager - Media Item</name>
+    <author>Dioscouri</author>
+    <authorEmail>info@dioscouri.com</authorEmail>
+    <authorUrl>http://www.dioscouri.com</authorUrl>
+    <version>0.1.0</version>
+    <creationDate>August 2010</creationDate>
+    <copyright>2010 Dioscouri.com</copyright>
+    <license>GNU General Public License</license>
+    <description>Enables user to display a single media item</description>
+    
+	<files>
+		<filename module="mod_mediamanager_media">mod_mediamanager_media.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+    
+	<languages folder="languages">
+		<language tag="en-GB">en-GB.mod_mediamanager_media.ini</language>
+	</languages>
+
+    <!-- Joomla 1.6+ only -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_mediamanager/elements">
+                <field name="media_id" type="mediamanagermedia"
+                    label="Select a Media Item"
+                    required="true"
+                    description="Provide a valid media id in order for the module to display it"
+                />
+            </fieldset>
+            
+            <fieldset name="advanced">
+                <field name="layout" type="modulelayout"
+                    label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+                <field name="moduleclass_sfx" type="text"
+                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+                <field name="owncache" type="list" default="1"
+                    label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC" >
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING
+                    </option>
+                </field>
+
+                <field name="cache_time" type="text" default="900"
+                    label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+            </fieldset>
+            
+        </fields>        
+    </config>
+    
+    <!-- Joomla 1.5 only -->	
+	<params addpath="/administrator/components/com_mediamanager/elements">
+        <param name="media_id" type="mediamanagermedia" section="com_mediamanager" default="" label="Select a Media Item" description="A MediaManager Media ID" />
+	</params>
+</install>
