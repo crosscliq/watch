@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Map">
+		<message>
+			<![CDATA[Map View]]>
+		</message>
+	</layout>
+	<state>
+		<name>Map</name>
+		<description>Map View</description>
+	</state>
+</metadata>

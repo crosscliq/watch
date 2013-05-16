@@ -24,7 +24,7 @@ $params = $vars->row->params;
                                     </li>
 
 
-                      
+                            
                             <?php endforeach; ?>
 
                             <?php /*

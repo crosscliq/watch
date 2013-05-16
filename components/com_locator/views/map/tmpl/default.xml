@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_LOCATOR_MAP" option="COM_LOCATOR_MAP_OPTION">
+		<help
+			key="DSCHELP_COM_LOCATOR_MAP"
+		/>
+		<message>
+			<![CDATA[COM_LOCATOR_MAP_DESC]]>
+		</message>
+		<fields name="request">
+            <fieldset name="request">
+            	<field name="id" type="int" default=""/>
+                <field name="type" type="text" default="bidder"/>
+            </fieldset>
+          
+        </fields>
+	</layout>
+</metadata>

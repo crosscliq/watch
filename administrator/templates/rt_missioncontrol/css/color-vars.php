@@ -1,0 +1,2 @@
+<?php 
+$body_text_color="#000";$body_link_color="#b3035c";$header_bg_color="#000";$header_text_color="#CCCCCC";$header_link_color="#FFFFFF";$header_shadow_color="#000000";$tab_bg_color="#4D4D4D";$tab_text_color="#FFFFFF";$special_bg_color="#C62D2D";$special_text_color="#FFFFFF";$active_bg_color="#b3035c";$active_text_color="#FFFFFF";$hover_bg_color="#b3035c";$hover_text_color="#FFFFFF";

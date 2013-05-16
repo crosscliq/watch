@@ -5,6 +5,10 @@
        <url>index.php?option=com_mediamanager&#38;view=media</url>
    </link>
    <link>
+       <name>Stations</name>
+       <url>index.php?option=com_mediamanager&#38;view=stations</url>
+   </link>
+   <link>
        <name>Files</name>
        <url>index.php?option=com_mediamanager&#38;view=files</url>
    </link>
