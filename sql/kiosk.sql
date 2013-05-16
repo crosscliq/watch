@@ -1299,7 +1299,7 @@ DROP TABLE IF EXISTS `lsf3y_mediamanager_stations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lsf3y_mediamanager_stations` (
-  `station_id` int(11) NOT NULL,
+  `station_id` int(11) NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) NOT NULL,
   `station_name` varchar(255) NOT NULL,
   `station_desc` text NOT NULL,
@@ -1317,8 +1317,9 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
   `stationtype_id` int(11) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `enabled` tinyint(4) NOT NULL,
-  `media_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `media_id` int(11) NOT NULL,
+  PRIMARY KEY (`station_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1327,6 +1328,7 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
 
 LOCK TABLES `lsf3y_mediamanager_stations` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` DISABLE KEYS */;
+INSERT INTO `lsf3y_mediamanager_stations` VALUES (1,'123412341234131','Station 1','in a cool place','','123 Fake Street','APT #14','Sandy','Utah','USA','7XC43G','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,4);
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1490,7 +1492,7 @@ CREATE TABLE `lsf3y_menu` (
   KEY `idx_alias` (`alias`),
   KEY `idx_path` (`path`(255)),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1499,7 +1501,7 @@ CREATE TABLE `lsf3y_menu` (
 
 LOCK TABLES `lsf3y_menu` WRITE;
 /*!40000 ALTER TABLE `lsf3y_menu` DISABLE KEYS */;
-INSERT INTO `lsf3y_menu` VALUES (1,'','Menu_Item_Root','root','','','','',1,0,0,0,0,0,'0000-00-00 00:00:00',0,0,'',0,'',0,41,0,'*',0);
+INSERT INTO `lsf3y_menu` VALUES (1,'','Menu_Item_Root','root','','','','',1,0,0,0,0,0,'0000-00-00 00:00:00',0,0,'',0,'',0,43,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (2,'menu','com_banners','Banners','','Banners','index.php?option=com_banners','component',0,1,1,4,0,0,'0000-00-00 00:00:00',0,0,'class:banners',0,'',1,10,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (3,'menu','com_banners','Banners','','Banners/Banners','index.php?option=com_banners','component',0,2,2,4,0,0,'0000-00-00 00:00:00',0,0,'class:banners',0,'',2,3,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (4,'menu','com_banners_categories','Categories','','Banners/Categories','index.php?option=com_categories&extension=com_banners','component',0,2,2,6,0,0,'0000-00-00 00:00:00',0,0,'class:banners-cat',0,'',4,5,0,'*',1);
@@ -1514,12 +1516,13 @@ INSERT INTO `lsf3y_menu` VALUES (12,'menu','com_messages_read','Read Private Mes
 INSERT INTO `lsf3y_menu` VALUES (16,'menu','com_redirect','Redirect','','Redirect','index.php?option=com_redirect','component',0,1,1,24,0,0,'0000-00-00 00:00:00',0,0,'class:redirect',0,'',29,30,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (17,'menu','com_search','Basic Search','','Basic Search','index.php?option=com_search','component',0,1,1,19,0,0,'0000-00-00 00:00:00',0,0,'class:search',0,'',25,26,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (22,'menu','com_joomlaupdate','System Update','','System Update','index.php?option=com_joomlaupdate','component',0,1,1,28,0,0,'0000-00-00 00:00:00',0,0,'class:joomlaupdate',0,'',27,28,0,'*',1);
-INSERT INTO `lsf3y_menu` VALUES (101,'mainmenu','Home','home','','home','index.php?option=com_content&view=featured','component',1,1,1,22,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"featured_categories\":[\"\"],\"num_leading_articles\":\"1\",\"num_intro_articles\":\"3\",\"num_columns\":\"3\",\"num_links\":\"0\",\"orderby_pri\":\"\",\"orderby_sec\":\"front\",\"order_date\":\"\",\"multi_column_order\":\"1\",\"show_pagination\":\"2\",\"show_pagination_results\":\"1\",\"show_noauth\":\"\",\"article-allow_ratings\":\"\",\"article-allow_comments\":\"\",\"show_feed_link\":\"1\",\"feed_summary\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_intro\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_readmore\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_hits\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"show_page_heading\":1,\"page_title\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',23,24,1,'*',0);
+INSERT INTO `lsf3y_menu` VALUES (101,'mainmenu','Home','home','','home','index.php?option=com_mediamanager&view=station&layout=view&task=view&id=1','component',1,1,1,10011,0,84,'2013-05-17 03:24:43',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":1,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',23,24,1,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (102,'main','COM_MEDIAMANAGER','com-mediamanager','','com-mediamanager','index.php?option=com_mediamanager','component',0,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'../media/com_mediamanager/images/mediamanager_16.png',0,'',31,32,0,'',1);
 INSERT INTO `lsf3y_menu` VALUES (103,'mainmenu','Station 1','station-1','','station-1','index.php?option=com_mediamanager&view=libraries&layout=view&task=view&library_id=1','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"reset\":\"1\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',33,34,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (104,'mainmenu','station 2','station-2','','station-2','index.php?option=com_mediamanager&view=item&layout=view&task=view&id=2','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',35,36,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (105,'mainmenu','Kiosk','kiosk','','kiosk','index.php?option=com_mediamanager&view=item&layout=view&task=view&id=4','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',37,38,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (106,'main','COM_LOCATOR','com-locator','','com-locator','index.php?option=com_locator','component',0,1,1,10015,0,0,'0000-00-00 00:00:00',0,1,'../media/com_locator/images/locator_16.png',0,'',39,40,0,'',1);
+INSERT INTO `lsf3y_menu` VALUES (107,'mainmenu','slogs','slogs','','slogs','index.php?option=com_mediamanager&view=station&layout=logs&task=logs','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',41,42,0,'*',0);
 /*!40000 ALTER TABLE `lsf3y_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1786,7 +1789,7 @@ CREATE TABLE `lsf3y_rokadminaudit` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=1149 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1193 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2082,6 +2085,50 @@ INSERT INTO `lsf3y_rokadminaudit` VALUES (1145,84,'127.0.0.1','bdbe60fbab049b925
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1146,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 20:58:12');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1147,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','cancel',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 20:58:16');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1148,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 20:58:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1149,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:04:30');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1150,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 21:11:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1151,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 21:11:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1152,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 21:12:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1153,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 21:12:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1154,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-16 21:13:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1155,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','edit',1,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:13:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1156,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','edit',1,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:14:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1157,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','cancel',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-16 21:14:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1158,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','close',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 21:15:06');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1159,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 21:15:06');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1160,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:15:08');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1161,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-16 21:15:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1162,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','edit',1,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:15:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1163,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 21:15:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1164,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 21:15:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1165,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 21:23:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1166,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_modules','cancel',90,'/administrator/index.php?option=com_modules&layout=edit&id=90','http://admanager.local/administrator/index.php?option=com_modules&view=module&layout=edit&id=90','Quick Links','2013-05-16 21:24:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1167,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_cpanel','',NULL,'/administrator/index.php','','','2013-05-16 21:24:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1168,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','http://admanager.local/administrator/index.php','','2013-05-16 21:24:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1169,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&task=item.edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-16 21:24:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1170,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-16 21:24:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1171,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=menutypes&tmpl=component&recordId=101','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','','2013-05-16 21:24:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1172,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','setType',101,'/administrator/index.php?option=com_menus&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','Home','2013-05-16 21:24:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1173,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','','2013-05-16 21:24:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1174,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','save',101,'/administrator/index.php?option=com_menus&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','Home','2013-05-16 21:24:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1175,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','','2013-05-16 21:24:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1176,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&task=item.edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=items','','2013-05-16 21:24:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1177,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=items','','2013-05-16 21:24:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1178,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','edit',1,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-16 21:28:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1179,0,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_mediamanager','close',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-16 22:10:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1180,0,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','cancel',101,'/administrator/index.php?option=com_menus&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit&id=101','Home','2013-05-16 22:10:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1181,0,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_menus&layout=edit&id=101','','2013-05-16 22:10:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1182,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',101,'/administrator/index.php?option=com_menus&layout=edit&id=101','http://admanager.local/administrator/index.php?option=com_menus&layout=edit&id=101','','2013-05-16 22:10:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1183,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','http://admanager.local/administrator/index.php?option=com_menus&layout=edit&id=101','','2013-05-16 22:10:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1184,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','add',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-16 22:10:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1185,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-16 22:10:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1186,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=menutypes&tmpl=component&recordId=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-16 22:10:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1187,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','setType',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-16 22:10:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1188,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-16 22:10:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1189,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','save',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','LOGS','2013-05-16 22:10:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1190,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-16 22:10:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1191,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','save',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','slogs','2013-05-16 22:11:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1192,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-16 22:11:18');
 /*!40000 ALTER TABLE `lsf3y_rokadminaudit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2105,7 +2152,7 @@ CREATE TABLE `lsf3y_rokuserstats` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2119,6 +2166,39 @@ INSERT INTO `lsf3y_rokuserstats` VALUES (69,0,'127.0.0.1','0c13055854813c2fba6f2
 INSERT INTO `lsf3y_rokuserstats` VALUES (70,0,'127.0.0.1','0c13055854813c2fba6f2c4b612e9e78','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','2013-05-16 17:33:42');
 INSERT INTO `lsf3y_rokuserstats` VALUES (71,0,'127.0.0.1','0c13055854813c2fba6f2c4b612e9e78','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','2013-05-16 17:34:39');
 INSERT INTO `lsf3y_rokuserstats` VALUES (72,0,'127.0.0.1','0c13055854813c2fba6f2c4b612e9e78','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','2013-05-16 18:01:25');
+INSERT INTO `lsf3y_rokuserstats` VALUES (73,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/','','2013-05-16 21:24:18');
+INSERT INTO `lsf3y_rokuserstats` VALUES (74,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/','http://admanager.local/administrator/index.php?option=com_locator&view=items','2013-05-16 21:27:25');
+INSERT INTO `lsf3y_rokuserstats` VALUES (75,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/234523452345','','2013-05-16 21:27:33');
+INSERT INTO `lsf3y_rokuserstats` VALUES (76,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/dashboard','','2013-05-16 21:27:33');
+INSERT INTO `lsf3y_rokuserstats` VALUES (77,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/?id=12341234123','','2013-05-16 21:27:59');
+INSERT INTO `lsf3y_rokuserstats` VALUES (78,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/?uuid=12341234123','','2013-05-16 21:28:51');
+INSERT INTO `lsf3y_rokuserstats` VALUES (79,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/?uuid=123412341234131','','2013-05-16 21:29:03');
+INSERT INTO `lsf3y_rokuserstats` VALUES (80,0,'127.0.0.1','d6ea21052a8d85d4293d00afcc665d1b','/?uuid=123412341234131','','2013-05-16 21:29:38');
+INSERT INTO `lsf3y_rokuserstats` VALUES (81,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:51:58');
+INSERT INTO `lsf3y_rokuserstats` VALUES (82,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:52:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (83,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:52:50');
+INSERT INTO `lsf3y_rokuserstats` VALUES (84,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:53:36');
+INSERT INTO `lsf3y_rokuserstats` VALUES (85,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:53:51');
+INSERT INTO `lsf3y_rokuserstats` VALUES (86,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:54:26');
+INSERT INTO `lsf3y_rokuserstats` VALUES (87,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:55:13');
+INSERT INTO `lsf3y_rokuserstats` VALUES (88,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:55:52');
+INSERT INTO `lsf3y_rokuserstats` VALUES (89,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:55:57');
+INSERT INTO `lsf3y_rokuserstats` VALUES (90,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:56:21');
+INSERT INTO `lsf3y_rokuserstats` VALUES (91,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:56:31');
+INSERT INTO `lsf3y_rokuserstats` VALUES (92,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:56:57');
+INSERT INTO `lsf3y_rokuserstats` VALUES (93,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:57:13');
+INSERT INTO `lsf3y_rokuserstats` VALUES (94,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 21:59:02');
+INSERT INTO `lsf3y_rokuserstats` VALUES (95,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:00:35');
+INSERT INTO `lsf3y_rokuserstats` VALUES (96,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:02:22');
+INSERT INTO `lsf3y_rokuserstats` VALUES (97,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:03:06');
+INSERT INTO `lsf3y_rokuserstats` VALUES (98,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:04:39');
+INSERT INTO `lsf3y_rokuserstats` VALUES (99,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:07:04');
+INSERT INTO `lsf3y_rokuserstats` VALUES (100,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:07:34');
+INSERT INTO `lsf3y_rokuserstats` VALUES (101,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:07:51');
+INSERT INTO `lsf3y_rokuserstats` VALUES (102,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:08:13');
+INSERT INTO `lsf3y_rokuserstats` VALUES (103,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:09:05');
+INSERT INTO `lsf3y_rokuserstats` VALUES (104,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:09:31');
+INSERT INTO `lsf3y_rokuserstats` VALUES (105,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/slogs','','2013-05-16 22:11:25');
 /*!40000 ALTER TABLE `lsf3y_rokuserstats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2175,7 +2255,8 @@ CREATE TABLE `lsf3y_session` (
 
 LOCK TABLES `lsf3y_session` WRITE;
 /*!40000 ALTER TABLE `lsf3y_session` DISABLE KEYS */;
-INSERT INTO `lsf3y_session` VALUES ('bdbe60fbab049b9254cf0cc15271d7d0',1,0,'1368737896','__default|a:8:{s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:15:\"session.counter\";i:6;s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":3:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}s:6:\"global\";O:8:\"stdClass\":1:{s:4:\"list\";O:8:\"stdClass\":1:{s:5:\"limit\";i:20;}}s:18:\"administrator::com\";O:8:\"stdClass\":1:{s:16:\"com_mediamanager\";O:8:\"stdClass\":1:{s:5:\"model\";O:8:\"stdClass\":4:{s:18:\"stationslimitstart\";i:0;s:8:\"stations\";O:8:\"stdClass\":3:{s:12:\"filter_order\";s:14:\"tbl.station_id\";s:16:\"filter_direction\";s:3:\"ASC\";s:6:\"filter\";s:0:\"\";}s:22:\"stationsfilter_id_from\";s:0:\"\";s:20:\"stationsfilter_id_to\";s:0:\"\";}}}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-16 20:29:54\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";N;}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"666b9a2d8be27d02a64c99f99414af32\";s:19:\"session.timer.start\";i:1368737890;s:18:\"session.timer.last\";i:1368737896;s:17:\"session.timer.now\";i:1368737896;}',84,'chris','');
+INSERT INTO `lsf3y_session` VALUES ('bdbe60fbab049b9254cf0cc15271d7d0',1,0,'1368742278','__default|a:8:{s:15:\"session.counter\";i:14;s:19:\"session.timer.start\";i:1368742228;s:18:\"session.timer.last\";i:1368742278;s:17:\"session.timer.now\";i:1368742278;s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":3:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}s:9:\"com_menus\";O:8:\"stdClass\":2:{s:5:\"items\";O:8:\"stdClass\":2:{s:6:\"filter\";O:8:\"stdClass\":1:{s:8:\"menutype\";s:8:\"mainmenu\";}s:10:\"limitstart\";i:0;}s:4:\"edit\";O:8:\"stdClass\":1:{s:4:\"item\";O:8:\"stdClass\":3:{s:4:\"data\";N;s:4:\"type\";N;s:4:\"link\";N;}}}s:4:\"item\";O:8:\"stdClass\":1:{s:6:\"filter\";O:8:\"stdClass\":1:{s:8:\"menutype\";s:8:\"mainmenu\";}}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-16 20:58:10\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";s:1:\"8\";}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"9691fc64a2a94e0b5669cdb78a9d09c5\";}',84,'chris','');
+INSERT INTO `lsf3y_session` VALUES ('e9ec11adb6428aa8dba16fb45406b88b',0,1,'1368742285','__default|a:8:{s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:15:\"session.counter\";i:25;s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";N;s:2:\"id\";i:0;s:4:\"name\";N;s:8:\"username\";N;s:5:\"email\";N;s:8:\"password\";N;s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";N;s:5:\"block\";N;s:9:\"sendEmail\";i:0;s:12:\"registerDate\";N;s:13:\"lastvisitDate\";N;s:10:\"activation\";N;s:6:\"params\";N;s:6:\"groups\";a:0:{}s:5:\"guest\";i:1;s:13:\"lastResetTime\";N;s:10:\"resetCount\";N;s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:14:\"\0*\0_authGroups\";N;s:14:\"\0*\0_authLevels\";a:2:{i:0;i:1;i:1;i:1;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:19:\"session.timer.start\";i:1368741150;s:18:\"session.timer.last\";i:1368742171;s:17:\"session.timer.now\";i:1368742285;s:13:\"session.token\";s:32:\"66f5e82bf7418e35fba7e8a128f02a21\";}',0,'','');
 /*!40000 ALTER TABLE `lsf3y_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2563,7 +2644,7 @@ CREATE TABLE `lsf3y_users` (
 
 LOCK TABLES `lsf3y_users` WRITE;
 /*!40000 ALTER TABLE `lsf3y_users` DISABLE KEYS */;
-INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-16 20:58:10','0','','0000-00-00 00:00:00',0);
+INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-16 22:10:34','0','','0000-00-00 00:00:00',0);
 INSERT INTO `lsf3y_users` VALUES (85,'Advertising Manager','ads','chris@crosscliq.com','b3593d33aa5feadb49c3db99096d1413:3G3mW4OLU1ViEk2ceahR3ag4T2SxHuk1','',0,0,'2013-05-16 16:39:55','2013-05-16 18:00:56','','{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `lsf3y_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2606,4 +2687,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-16 14:58:43
+-- Dump completed on 2013-05-16 16:12:36

@@ -12,13 +12,15 @@ defined('_JEXEC') or die('Restricted access');
 
 MediaManager::load( 'MediaManagerViewBase', "views._base", array( 'site'=>'site', 'type'=>'components', 'ext'=>'com_mediamanager' ) );
 
-class MediaManagerViewItem extends MediaManagerViewBase  
+class MediaManagerViewStation extends MediaManagerViewBase  
 {
 	function _default($tpl='')
-	{
+	{	
+
 		$model = $this->getModel();
 	    $row = $model->getItem();
-	    JFilterOutput::objectHTMLSafe( $row );
+	   
+	  //  JFilterOutput::objectHTMLSafe( $row );
 		$this->assign('row', $row );
 	}
 }

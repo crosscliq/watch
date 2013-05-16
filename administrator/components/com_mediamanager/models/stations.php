@@ -19,7 +19,8 @@ class MediaManagerModelStations extends MediaManagerModelBase
 	{
 		$filter = $this->getState( 'filter' );
 		$filter_stationtype = $this->getState( 'filter_stationtype' );
-		
+		$filter_uuid = $this->getState( 'filter_uuid' );
+
 		if ( strlen( $filter ) )
 		{
 			$key = $this->_db->Quote( '%' . $this->_db->getEscaped( trim( strtolower( $filter ) ) ) . '%' );
@@ -32,6 +33,11 @@ class MediaManagerModelStations extends MediaManagerModelBase
 		{
 			$query->where( 'tbl.stationtype_id = ' . $this->_db->Quote( $filter_stationtype ) );
 		}
+
+		if ( strlen( $filter_uuid ) )
+		{
+			$query->where( 'tbl.uuid = ' . $this->_db->Quote( $filter_uuid ) );
+		}
 	}
 	
 	/**
@@ -40,9 +46,8 @@ class MediaManagerModelStations extends MediaManagerModelBase
 	protected function _buildQueryFields( &$query )
 	{
 		$query->select( $this->getState( 'select', 'tbl.*' ) );
-		//$query->select( "ct.*" );
+
 	}
-	
 	/**
 	 * Builds JOINS clauses for the query
 	 */
@@ -58,7 +63,10 @@ class MediaManagerModelStations extends MediaManagerModelBase
 
     parent::prepareItem($item, $key, $refresh);
 
-  }
+ 	 }
 	
+
+
+
 
 }

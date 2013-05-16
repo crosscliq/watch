@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT">
+	<layout title="COM_MEDIAMANAGER_STATION_SINGLE_LAYOUT">
 		<message>
-			<![CDATA[COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT_DESC]]>
+			<![CDATA[COM_MEDIAMANAGER_STATION_SINGLE_LAYOUT_DESC]]>
 		</message>
 	</layout>
     
@@ -11,10 +11,10 @@
         <fieldset name="request" addfieldpath="/administrator/components/com_mediamanager/elements">
             <field name="task" type="hidden" default="view" />
             
-            <field name="id" type="mediamanagermedia"
-                label="COM_MEDIAMANAGER_SELECT_MEDIA"
+            <field name="id" type="mediamanagerstation"
+                label="COM_MEDIAMANAGER_SELECT_STATION"
                 required="true"
-                description="COM_MEDIAMANAGER_SELECT_MEDIA"
+                description="COM_MEDIAMANAGER_SELECT_STATION"
             />
 
         </fieldset>

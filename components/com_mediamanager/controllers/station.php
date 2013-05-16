@@ -27,14 +27,16 @@ class MediaManagerControllerStation extends MediaManagerController
 	    $app = JFactory::getApplication();
 	    $request = JRequest::get('request');
 	    
-	    // load the media item
-        $model = $this->getModel( 'item' );
-        $id = $model->getId();
-        $model->setId( $id );
-        $model->setState( 'get_categories', true );
-        $media_item = $model->getItem( $id );
         
-        if (empty($media_item->media_id) || empty($media_item->media_type) || empty($media_item->media_enabled))
+
+	    // load the media item
+        $model = $this->getModel( 'station' );
+        $uuid = $model->getUUID();
+   
+        $station = $model->getItembyUUID( $uuid );
+        
+        
+        if (empty($station->media_id) || empty($station->media->media_type) || empty($station->media->media_enabled))
         {
             JError::raiseNotice( '', 'D1: Invalid Media' );
             return;
@@ -42,7 +44,7 @@ class MediaManagerControllerStation extends MediaManagerController
         
         $hmodel = $this->getModel( 'handlers' );
         $handler = $hmodel->getTable();
-        $handler->load( array( 'element'=>$media_item->media_type ) );
+        $handler->load( array( 'element'=>$station->media->media_type ) );
         $key = $handler->getKeyName();
         if (empty($handler->$key))
         {
@@ -68,23 +70,24 @@ class MediaManagerControllerStation extends MediaManagerController
         
         $html = '';
         $dispatcher = JDispatcher::getInstance();
-        $results = $dispatcher->trigger( 'onDisplayMediaItem', array( $handler, $media_item ) );
+        $results = $dispatcher->trigger( 'onDisplayMediaItem', array( $handler, $station->media ) );
+
         for ($i=0; $i<count($results); $i++) 
         {
             $html .= $results[$i];
         }
 
-        $media_item->categories = array();
-        foreach ($media_item->mediacategories as $mc)
+       /* $station->media->categories = array();
+        foreach ($station->media->mediacategories as $mc)
         {
-            if (empty($media_item->categories[$mc->categorytype_id]))
+            if (empty($station->media->categories[$mc->categorytype_id]))
             {
-                $media_item->categories[$mc->categorytype_id] = array();
+                $station->media->categories[$mc->categorytype_id] = array();
             }
-            $media_item->categories[$mc->categorytype_id][] = $mc; 
-        }
+            $station->media->categories[$mc->categorytype_id][] = $mc; 
+        }*/
         
-        $view   = $this->getView( 'item', 'html' );
+        $view   = $this->getView( 'station', 'html' );
         $view->set( '_doTask', true);
         $view->set( 'hidemenu', true);
         $view->setModel( $model, true );
@@ -92,13 +95,11 @@ class MediaManagerControllerStation extends MediaManagerController
         $view->set('handler', $handler);
         $view->set('handler_html', $html);
 
-    	$ctmodel = JModel::getInstance( 'CategoryTypes', 'MediaManagerModel' );
-        $ctitems = $ctmodel->getList(false);
-        $view->assign('category_types', $ctitems);
+    	//$ctmodel = JModel::getInstance( 'CategoryTypes', 'MediaManagerModel' );
+        //$ctitems = $ctmodel->getList(false);
+        //$view->assign('category_types', $ctitems);
         
-        $related_items = $model->getRelated( $id );
-        $view->assign('related_items', $related_items);
-
+       
         $helper = new MediaManagerHelperBase();
         $helpermedia = new MediaManagerHelperMedia();
         $state = $helpermedia->getState();
@@ -125,27 +126,21 @@ class MediaManagerControllerStation extends MediaManagerController
         $view->assign('library_category_types', $library_category_types);
         
         $document = JFactory::getDocument();
-        $page_title = $media_item->media_title;
-        $page_title .= " | " . ucwords($media_item->media_group);
+        $page_title = $station->media->media_title;
+        $page_title .= " | " . ucwords($station->media->media_group);
         $document->setTitle( strip_tags( htmlspecialchars_decode( $page_title ) ) );
-        $document->setDescription( strip_tags( htmlspecialchars_decode( $media_item->media_description ) ) );
+        $document->setDescription( strip_tags( htmlspecialchars_decode( $station->media->media_description ) ) );
         
-        $document->addCustomTag( "<meta property='og:image' content='" . JURI::root() . $media_item->media_image . "' />" );
+        $document->addCustomTag( "<meta property='og:image' content='" . JURI::root() . $station->media->media_image . "' />" );
         
         // TODO Add support for this, but we need a helper function.  See https://developers.facebook.com/docs/opengraph/complextypes/
-        //$document->addCustomTag( "<meta property='og:type' content='$media_item->media_group' />" );
+        //$document->addCustomTag( "<meta property='og:type' content='$station->media->media_group' />" );
         
-        $model = JModel::getInstance( 'Media', 'MediamanagerModel' );
-        $surrounding = $model->getSurrounding( $id );
-        $view->assign('surrounding', $surrounding);
-
-        $pathway = JFactory::getApplication()->getPathway();
-        $pathway->additem($media_item->media_group);
+       
         
-        $pathway = JFactory::getApplication()->getPathway();
-        $pathway->additem($media_item->media_title);
-        
-        JRequest::setVar( 'layout', 'default' );
+        JRequest::setVar( 'layout', 'view' );
+      
+    
         parent::display($cachable, $urlparams);
 	}
 	

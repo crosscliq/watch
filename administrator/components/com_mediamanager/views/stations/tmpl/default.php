@@ -89,11 +89,11 @@
                 </td>
                 <td style="text-align: left;">
                     <a href="<?php echo $item->link; ?>">
-                        <?php echo $item->station_title; ?>
+                        <?php echo $item->station_name; ?>
                     </a>
                 </td>
                 <td style="text-align: center;">
-                    <?php echo $item->stationtype_title; ?>
+                    <?php // echo $item->stationtype_title; ?>
                 </td>
             </tr>
             <?php $i=$i+1; $k = (1 - $k); ?>

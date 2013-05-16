@@ -18,6 +18,15 @@
             </tr>
             <tr>
                 <td class="key">
+                    <?php echo JText::_( 'Media Playlist' ); ?>:
+                </td>
+                <td>
+                    <input name="media_id" value="<?php echo @$row->media_id; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="key">
                     <?php echo JText::_( 'Station Name' ); ?>:
                 </td>
                 <td>
@@ -73,7 +82,30 @@
                     <input name="station_postalcode" value="<?php echo @$row->station_postalcode; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
                 </td>
             </tr>
-
+             <tr>
+                <td class="key">
+                    <?php echo JText::_( 'Latitude' ); ?>:
+                </td>
+                <td>
+                    <input name="station_lat" value="<?php echo @$row->station_lat; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
+                </td>
+            </tr>
+             <tr>
+                <td class="key">
+                    <?php echo JText::_( 'Postal Code' ); ?>:
+                </td>
+                <td>
+                    <input name="station_lng" value="<?php echo @$row->station_lng; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
+                </td>
+            </tr>
+             <tr>
+                <td class="key">
+                    <?php echo JText::_( 'Phone #' ); ?>:
+                </td>
+                <td>
+                    <input name="phone" value="<?php echo @$row->phone; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
+                </td>
+            </tr>
 
             <tr>
                 <td class="key">
@@ -85,7 +117,7 @@
             </tr>
             <tr>
                 <td class="key">
-                    <?php echo JText::_( 'UUID' ); ?>:
+                    <?php echo JText::_( 'Notes' ); ?>:
                 </td>
                 <td>
                     <input name="station_notes" value="<?php echo @$row->station_notes; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
