@@ -575,6 +575,76 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
     
         return $this->getFilesHtml( $id );
     }
+
+    public function addNewVideo( $plugin )
+    {
+        if ( !$this->_isMe( $plugin ) )
+        {
+            return null;
+        }
+    
+        $elements = json_decode( preg_replace('/[\n\r]+/', '\n', JRequest::getVar( 'elements', '', 'post', 'string' ) ) );
+
+
+
+        $helper = new DSCHelper();
+        $values = $helper->elementsToArray($elements);
+
+        $model = JModel::getInstance('Media', 'MediaManagerModel');
+        $media_item = $model->getTable();
+
+        $id = $values['id'];
+        $media_item->load( $id );
+    
+            $item_remote_new = $values['video_params']['webm'];
+
+
+            jimport('joomla.filesystem.file');
+            $file = JTable::getInstance( 'Files', 'MediaManagerTable' );
+            $file->file_url = $item_remote_new;
+            $file->file_extension = 'html5video';
+            $file->file_title = $values['video_title'];
+            $file->file_params = serialize($values['video_params']);
+            $file->file_extension = JFile::getExt( $file->file_url );
+            $file->file_name = JFile::getName( $file->file_url );
+            $file->file_enabled = '1';
+            if ($file->save())
+            {
+                // add this file to this media item
+                $mediafile = JTable::getInstance( 'MediaFiles', 'MediaManagerTable' );
+                $mediafile->load( array( 'file_id'=>$file->file_id, 'media_id'=>$media_item->media_id ) );
+                $mediafile->file_id = $file->file_id;
+                $mediafile->media_id = $media_item->media_id;
+                if ($mediafile->save())
+                {
+                    // and create the corresponding row in the slideshow_kiosk table
+                    $slideshowdefault_table = JTable::getInstance($this->plain_name,'MediaManagerTable');
+                    $slideshowdefault_table->load( array( 'mediafile_id'=>$mediafile->mediafile_id, 'media_id'=>$media_item->media_id ) );
+                    $slideshowdefault_table->media_id = $media_item->media_id;
+                    $slideshowdefault_table->mediafile_id = $mediafile->mediafile_id;
+                    $slideshowdefault_table->enabled = '1';
+                    if (!$slideshowdefault_table->save())
+                    {
+                        JFactory::getApplication()->enqueueMessage( $slideshowdefault_table->getError(), 'notice' );
+                    }
+                }
+                else
+                {
+                    JFactory::getApplication()->enqueueMessage( $mediafile->getError(), 'notice' );
+                }
+    
+            }
+            else
+            {
+                JFactory::getApplication()->enqueueMessage( $file->getError(), 'notice' );
+            }
+        
+    
+    
+        return $this->getFilesHtml( $id );
+    }
+
+
     
     public function deleteFile( $plugin )
     {
@@ -625,8 +695,7 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
         $query->join('LEFT', '#__mediamanager_'. $this->_element.' AS element_tbl ON tbl.mediafile_id = element_tbl.mediafile_id');
         $fields = array( $table->getKeyName(), 'name', 'caption', 'url', 'url_target', 'enabled', 'ordering', 'publish_up', 'publish_down' );
         $query->select( $fields );
-        echo $query;
-        die();
+        
         $model->setQuery( $query );
         $model->_list = array(); // preserves the query but forces a refresh
 

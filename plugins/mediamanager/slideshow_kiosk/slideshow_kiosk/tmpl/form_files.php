@@ -4,18 +4,18 @@
     <thead>
         <tr>
     		<th class="key" style="text-align: center; max-width: 100px; width: 100px;">
-    		    <?php echo JTEXT::_('COM_MEDIAMANAGER_IMAGE') ;?>
+    		    <?php echo JTEXT::_('Media') ;?>
     		</th>
-            <th class="key" style="text-align: left;">
+           <?php /* <th class="key" style="text-align: left;">
               <?php echo JTEXT::_('COM_MEDIAMANAGER_URL') ; ?> + 
-              <?php echo JTEXT::_('COM_MEDIAMANAGER_CAPTION');?>
-            </th>
+              <?php echo JTEXT::_('COM_MEDIAMANAGER_CAPTION');?> 
+            </th> */ ?>
             <th class="key" style="text-align: center;">
                 <?php echo JTEXT::_('COM_MEDIAMANAGER_PUBLICATION_DATES'); ?>
             </th>
-            <th class="key" style="text-align: center;">
+            <?php /*<th class="key" style="text-align: center;">
                 <?php echo JTEXT::_('COM_MEDIAMANAGER_OPEN_URL_IN'); ?>:
-            </th>
+            </th>*/ ?>
             <th class="key" style="text-align: center;">
                 <?php echo JTEXT::_('COM_MEDIAMANAGER_ORDERING'); ?>
             </th>
@@ -37,20 +37,39 @@
         <?php 
         $i=0;
         foreach ($vars->list as $item) : 
+
+          
         ?>
         <tr>
     		<td style="text-align: center;">
-                <?php if (!empty($item->file_url)) { ?>
+                 <?php if ($item->file_extension == 'webm' ||  $item->file_extension == 'ogg' || $item->file_extension == 'mp4')  { $string = unserialize($item->file_params);     // var_dump($item->file_params);   //$item->file_params = unserialize($item->file_params) ;
+         ?>
+                 <video width="85" height="60" controls>
+                    <?php 
+                    foreach ($string as $key => $value) : ?>
+                    <?php $key = str_replace("'", "", $key) ;  ?>
+                        <?php if($key === 'ogg' || $key === 'mp4' || $key === 'webm' && !empty($value)) :?>
+                        <source src="<?php echo $value; ?>" type="video/<?php echo  $key; ?>"> 
+                        <?php endif; ?>
+                        
+                  
+                    <?php endforeach; ?>
+
+                Your browser does not support the video tag.
+                </video>
+               
+                <?php  } elseif (!empty($item->file_url)) { ?>
                     <img src="<?php echo $item->file_url; ?>" style="max-width: 85px; max-height: 60px;" />
                     <br/>
-                    <?php echo $item->file_url; ?>
+                    <?php // echo $item->file_url; ?>
                 <?php } else { ?>
-        			<img src="<?php echo MediaManager::getURL('siteImages') . $vars->row->media_id.'/thumbs/'.$item->file_name; ?>" style="max-width: 85px; max-height: 60px;" />
+                <?php  ?>
+        			<img src="<?php echo JURI::root() . $item->file_path ?>" style="max-width: 85px; max-height: 60px;" />
         			<br/>
-                    <?php echo $item->file_name; ?>
+                    <?php // echo $item->file_name; ?>
                 <?php } ?>
     		</td>
-            <td>
+            <?php /* <td>
                 <div class="dsc-table">
                     <div class="dsc-row">
                         <div class="dsc-cell" style="vertical-align: top;">
@@ -70,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-            </td>
+            </td>  */ ?>
             <td style="text-align: right;">
                 <div class="dsc-table">
                     <div class="dsc-row">
@@ -91,9 +110,9 @@
                     </div>
                 </div>
             </td>
-            <td style="text-align: center;">
+           <?php /* <td style="text-align: center;">
                 <?php echo MediaManagerSelectSlideshowKiosk::url_target( $item->url_target, 'url_target['.$item->mediafile_id.']' );?>
-            </td>
+            </td> */ ?>
             <td style="text-align: center;">
                 <input type="text" name="ordering[<?php echo $item->mediafile_id; ?>]" value="<?php echo $item->ordering; ?>" size="5" />
             </td>

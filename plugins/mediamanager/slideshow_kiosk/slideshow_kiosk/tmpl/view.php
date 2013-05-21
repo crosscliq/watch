@@ -6,6 +6,11 @@
 <?php $count = $vars->db_files_count;
 $params = $vars->row->params;
 
+
+
+
+
+
 ?>
 
         <!--
@@ -18,10 +23,41 @@ $params = $vars->row->params;
                     <div class="fullwidthabnner">
                         <ul>
                             <?php foreach ($vars->db_files as $key => $item) : ?>
-                            <li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="300" data-thumb="<?php echo $item->file; ?>">
+
+                            
+                            <?php switch ($item->file_extension) {
+                                case 'webm':
+                                case 'ogg':
+                                case 'ogv':
+                                case 'mp4': ?>
+                                    <li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="300" data-thumb="<?php echo $item->file; ?>">
+                                        <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
+                                       <video width="850" height="600" controls>
+                    <?php   
+                    $string = unserialize($item->file_params);
+                    foreach ($string as $skey => $value) : ?>
+                    <?php $skey = str_replace("'", "", $skey) ; ?>
+                        <?php if($skey == 'ogg' || $skey == 'mp4' || $skey == 'webm') :?>
+                            <?php if(strlen($value)) : ?>
+                        <source src="<?php echo $value; ?>" type="video/<?php echo  $skey; ?>"> 
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        
+                    <?php endforeach; ?>
+                Your browser does not support the video tag.
+                </video>
+                                    </li>
+                               <?php  break;
+                                
+                                default: ?>
+                                     <li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="300" data-thumb="<?php echo $item->file; ?>">
                                         <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
                                         <img src="<?php echo $item->file; ?>" >
                                     </li>
+                                <?php    break;
+                            } ?>
+
+                            
 
 
                             
@@ -353,7 +389,7 @@ $params = $vars->row->params;
 
 
         <script>
-            var api;
+         /*   var api;
             jQuery(document).ready(function() {
                  api =  jQuery('.fullwidthabnner').revolution(
                                 {

@@ -12,12 +12,6 @@
             <param name="filter_library" type="mediamanagerlibrary" section="com_mediamanager" default="" label="Select Library" description="A Library ID" />
         </url>
 	</state>
-	<state>
-		<name>COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT</name>
-		<description>COM_MEDIAMANAGER_MEDIA_DEFAULT_LAYOUT_DESC</description>
-        <url addpath="/administrator/components/com_locator/elements">
-            <param name="filter_library" type="mediamanagerlibrary" section="com_locator" default="" label="Select Library" description="A Library ID" />
-        </url>
-	</state>
 
+	
 </metadata>

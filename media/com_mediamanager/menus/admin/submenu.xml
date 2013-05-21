@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <menu>
+  <link>
+       <name>Dashboard</name>
+       <url>index.php?option=com_mediamanager&#38;view=dashboard</url>
+   </link>
    <link>
        <name>Media</name>
        <url>index.php?option=com_mediamanager&#38;view=media</url>
@@ -12,24 +16,5 @@
        <name>Files</name>
        <url>index.php?option=com_mediamanager&#38;view=files</url>
    </link>
-   <link>
-       <name>Libraries</name>
-       <url>index.php?option=com_mediamanager&#38;view=libraries</url>
-   </link>
-   <link>
-       <name>Categories</name>
-       <url>index.php?option=com_mediamanager&#38;view=categories</url>
-   </link>
-   <link>
-       <name>Category Types</name>
-       <url>index.php?option=com_mediamanager&#38;view=categorytypes</url>
-   </link>
-   <link>
-       <name>Tags</name>
-       <url>index.php?option=com_mediamanager&#38;view=tags</url>
-   </link>
-   <link>
-       <name>Configuration</name>
-       <url>index.php?option=com_mediamanager&#38;view=config</url>
-   </link>     
+   
 </menu>

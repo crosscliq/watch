@@ -27,7 +27,7 @@ echo $tabs->startPanel( JText::_( 'COM_MEDIAMANAGER_FILES' ), "panel_images");
     <div class="dsc-table">
         <div class="dsc-row">
             <div class="dsc-cell dsc-key">
-                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_LOCAL_FILE');?>
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_LOCAL_IMAGE');?>
             </div>
             <div class="dsc-cell dsc-value">
     		    <?php $media = new DSCElementMedia(); ?>
@@ -77,6 +77,75 @@ echo $tabs->startPanel( JText::_( 'COM_MEDIAMANAGER_FILES' ), "panel_images");
                         <?php echo JText::_( "COM_MEDIAMANAGER_CLICK_APPLY_TO_ADD_EXISTING_FILES" ); ?>
                     </p>
                 <?php } ?>
+            </div>
+        </div>
+    </div>
+    
+    <?php if (!empty($vars->list)) { ?>
+    
+    <h2><?php echo JTEXT::_('COM_MEDIAMANAGER_CURRENT_FILES') ;?></h2>
+
+    <div id="form_files">
+        <?php include 'form_files.php'; ?>
+    </div>
+
+    <?php } ?>
+
+<?php 
+echo $tabs->endPanel();
+
+
+// Tab
+echo $tabs->startPanel( JText::_( 'COM_MEDIAMANAGER_VIDEO' ), "panel_video");
+?>
+    <h2><?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_VIDEO') ;?></h2>
+    
+    <div>
+        <input name="add_type" type="hidden" value="" id="add_type" />
+    </div>
+
+    <div class="dsc-table">
+        <div class="dsc-row">
+            <div class="dsc-cell dsc-key">
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_VIDEO_TITLE');?>
+            </div>
+            <div class="dsc-cell dsc-value">
+                <input name="video_title" type="text" size="150" id="video_title" />
+            </div>
+             
+        </div>
+         <div class="dsc-row">
+            <div class="dsc-cell dsc-key">
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_VIDEO_WEBM');?>
+            </div>
+            <div class="dsc-cell dsc-value">
+                <input name="video_params[webm]" type="text" size="150" id="video_params_webm" />
+            </div>
+        </div>
+        <div class="dsc-row">
+            <div class="dsc-cell dsc-key">
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_VIDEO_OGG');?>
+            </div>
+            <div class="dsc-cell dsc-value">
+                <input name="video_params[ogg]" type="text" size="150" id="video_params_ogg" />
+            </div>
+        </div>
+         <div class="dsc-row">
+            <div class="dsc-cell dsc-key">
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_NEW_VIDEO_MP4');?>
+            </div>
+            <div class="dsc-cell dsc-value">
+                <input name="video_params[mp4]" type="text" size="150" id="video_params_mp4" />
+            </div>
+        </div>
+        
+        <div class="dsc-row">
+            <div class="dsc-cell dsc-key">
+                <?php echo JTEXT::_('COM_MEDIAMANAGER_ADD_AN_EXISTING_FILE_MANAGED_BY_MM');?>
+            </div>
+            <div class="dsc-cell dsc-value">
+                <input name="add_video" type="button" onclick="document.adminForm.add_type.value='add_video'; SlideshowKiosk.addNewVideo( 'form_files', '<?php echo JText::_( "COM_MEDIAMANAGER_ADDING_VIDEO" ); ?>' );" value="<?php echo JText::_( "COM_MEDIAMANAGER_ADD_VIDEO" ); ?>" />
+
             </div>
         </div>
     </div>

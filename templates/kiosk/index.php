@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
 		<jdoc:include type="component" />
 		</div>
 	</div>
-	<script type="text/javascript" src="plugins/mediamanager/slideshow_kiosk/slideshow_kiosk/js/supersized.3.1.3.js"></script>
+
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
