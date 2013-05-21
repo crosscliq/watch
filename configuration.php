@@ -14,7 +14,7 @@ class JConfig {
 	public $dbtype = 'mysqli';
 	public $host = 'localhost';
 	public $user = 'root';
-	public $password = 'chris01';
+	public $password = 'F0rgetting01';
 	public $db = 'kiosk';
 	public $dbprefix = 'lsf3y_';
 	public $live_site = '';
@@ -53,8 +53,8 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = '/Users/chris/Repos/CrossCliq/AdManager/logs';
-	public $tmp_path = '/Users/chris/Repos/CrossCliq/AdManager/tmp';
+	public $log_path = '/var/www/watch/logs';
+	public $tmp_path = '/var/www/watch/tmp';
 	public $lifetime = '15';
 	public $session_handler = 'database';
 	public $MetaRights = '';
