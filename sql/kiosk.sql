@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.25, for osx10.6 (i386)
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: kiosk
 -- ------------------------------------------------------
--- Server version	5.5.25
+-- Server version	5.5.31-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `lsf3y_assets` (
   UNIQUE KEY `idx_asset_name` (`name`),
   KEY `idx_lft_rgt` (`lft`,`rgt`),
   KEY `idx_parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `lsf3y_assets` (
 
 LOCK TABLES `lsf3y_assets` WRITE;
 /*!40000 ALTER TABLE `lsf3y_assets` DISABLE KEYS */;
-INSERT INTO `lsf3y_assets` VALUES (1,0,1,63,0,'root.1','Root Asset','{\"core.login.site\":{\"6\":1,\"2\":1},\"core.login.admin\":{\"6\":1},\"core.login.offline\":{\"6\":1},\"core.admin\":{\"8\":1},\"core.manage\":{\"7\":1},\"core.create\":{\"6\":1,\"3\":1},\"core.delete\":{\"6\":1},\"core.edit\":{\"6\":1,\"4\":1},\"core.edit.state\":{\"6\":1,\"5\":1},\"core.edit.own\":{\"6\":1,\"3\":1}}');
+INSERT INTO `lsf3y_assets` VALUES (1,0,1,65,0,'root.1','Root Asset','{\"core.login.site\":{\"6\":1,\"2\":1},\"core.login.admin\":{\"6\":1},\"core.login.offline\":{\"6\":1},\"core.admin\":{\"8\":1},\"core.manage\":{\"7\":1},\"core.create\":{\"6\":1,\"3\":1},\"core.delete\":{\"6\":1},\"core.edit\":{\"6\":1,\"4\":1},\"core.edit.state\":{\"6\":1,\"5\":1},\"core.edit.own\":{\"6\":1,\"3\":1}}');
 INSERT INTO `lsf3y_assets` VALUES (2,1,1,2,1,'com_admin','com_admin','{}');
 INSERT INTO `lsf3y_assets` VALUES (3,1,3,6,1,'com_banners','com_banners','{\"core.admin\":{\"7\":1},\"core.manage\":{\"6\":1},\"core.create\":[],\"core.delete\":[],\"core.edit\":[],\"core.edit.state\":[]}');
 INSERT INTO `lsf3y_assets` VALUES (4,1,7,8,1,'com_cache','com_cache','{\"core.admin\":{\"7\":1},\"core.manage\":{\"7\":1}}');
@@ -76,6 +76,7 @@ INSERT INTO `lsf3y_assets` VALUES (34,1,55,56,1,'com_joomlaupdate','com_joomlaup
 INSERT INTO `lsf3y_assets` VALUES (35,1,57,58,1,'com_mediamanager','mediamanager','{}');
 INSERT INTO `lsf3y_assets` VALUES (36,1,59,62,1,'com_locator','locator','{}');
 INSERT INTO `lsf3y_assets` VALUES (37,36,60,61,2,'com_locator.category.8','Ad Station','{\"core.create\":{\"6\":1,\"3\":1},\"core.delete\":{\"6\":1},\"core.edit\":{\"6\":1,\"4\":1},\"core.edit.state\":{\"6\":1,\"5\":1}}');
+INSERT INTO `lsf3y_assets` VALUES (38,1,63,64,1,'com_scout','scout','{}');
 /*!40000 ALTER TABLE `lsf3y_assets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -517,7 +518,7 @@ CREATE TABLE `lsf3y_extensions` (
   KEY `element_clientid` (`element`,`client_id`),
   KEY `element_folder_clientid` (`element`,`folder`,`client_id`),
   KEY `extension` (`type`,`element`,`folder`,`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10025 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10036 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -648,6 +649,17 @@ INSERT INTO `lsf3y_extensions` VALUES (10021,'RokUserStats','module','mod_rokuse
 INSERT INTO `lsf3y_extensions` VALUES (10022,'RokStats','module','mod_rokstats','',0,1,1,0,'{\"legacy\":false,\"name\":\"RokStats\",\"type\":\"module\",\"creationDate\":\"April 10, 2012\",\"author\":\"RocketTheme, LLC\",\"copyright\":\"(C) 2005 - 2012 RocketTheme, LLC. All rights reserved.\",\"authorEmail\":\"support@rockettheme.com\",\"authorUrl\":\"http:\\/\\/www.rockettheme.com\",\"version\":\"2.6\",\"description\":\"MC_RS_ROKUSERSTATS_DESC\",\"group\":\"\"}','{\"sessiontime\":\"\",\"showcurrentactiveusers\":\"1\",\"showactiveguests\":\"1\",\"showactiveregistered\":\"1\",\"showregisteredusernames\":\"0\",\"showuniqueviststoday\":\"1\",\"showuniquevistsyesterday\":\"1\",\"showvisitsthisweek\":\"1\",\"showvisitspreviousweek\":\"1\",\"showtotalarticles\":\"0\",\"shownewarticlesthisweek\":\"0\"}','','',0,'0000-00-00 00:00:00',0,0);
 INSERT INTO `lsf3y_extensions` VALUES (10023,'RokUserChart','module','mod_rokuserchart','',1,1,1,0,'{\"legacy\":false,\"name\":\"RokUserChart\",\"type\":\"module\",\"creationDate\":\"April 10, 2012\",\"author\":\"RocketTheme, LLC\",\"copyright\":\"(C) 2005 - 2012 RocketTheme, LLC. All rights reserved.\",\"authorEmail\":\"support@rockettheme.com\",\"authorUrl\":\"http:\\/\\/www.rockettheme.com\",\"version\":\"2.6\",\"description\":\"MC_RUC_DESC\",\"group\":\"\"}','{\"extra_class\":\"\",\"history\":\"7\",\"width\":\"285\",\"height\":\"120\"}','','',0,'0000-00-00 00:00:00',0,0);
 INSERT INTO `lsf3y_extensions` VALUES (10024,'RokAdminAudit','module','mod_rokadminaudit','',1,1,1,0,'{\"legacy\":false,\"name\":\"RokAdminAudit\",\"type\":\"module\",\"creationDate\":\"April 10, 2012\",\"author\":\"RocketTheme, LLC\",\"copyright\":\"(C) 2005 - 2012 RocketTheme, LLC. All rights reserved.\",\"authorEmail\":\"support@rockettheme.com\",\"authorUrl\":\"http:\\/\\/www.rockettheme.com\",\"version\":\"2.6\",\"description\":\"MC_RAA_ROKADMINAUDIT_DESC\",\"group\":\"\"}','{\"limit\":\"5\",\"detail_filter\":\"low\",\"enableGravatar\":\"1\"}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10025,'Recent Activity','module','mod_scout_activity','',1,1,2,0,'{\"legacy\":true,\"name\":\"Recent Activity\",\"type\":\"module\",\"creationDate\":\"April 2010\",\"author\":\"Dioscouri.com\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Displays recent activity on the site\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10026,'Scout - Tracking Ambrasubs Activity','plugin','scout','ambrasubs',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking Ambrasubs Activity\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for Ambrasubs\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10027,'Scout - Tracking Billets Activity','plugin','scout','billets',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking Billets Activity\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for Billets\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10028,'Scout - Tracking JomSocial Activity','plugin','scout','community',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking JomSocial Activity\",\"type\":\"plugin\",\"creationDate\":\"December 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for JomSocial.\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10029,'Scout - Content','plugin','scout','content',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Content\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.1.0\",\"description\":\"Enables Scout activity logging for the Core Content Manager\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10030,'Scout - Tracking K2 Activity','plugin','scout','k2',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking K2 Activity\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for K2\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10031,'Koowa - Scout','plugin','scout','koowa',0,1,1,0,'{\"legacy\":true,\"name\":\"Koowa - Scout\",\"type\":\"plugin\",\"creationDate\":\"May 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 - 2010 Dioscouri.com\",\"authorEmail\":\"\",\"authorUrl\":\"\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for all Nooku Framework powered extensions\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10032,'Scout - System','plugin','scout','system',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - System\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for extensions without plugin events\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10033,'Scout - Tracking Tienda Activity','plugin','scout','tienda',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking Tienda Activity\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for Tienda\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10034,'Scout - User','plugin','scout','user',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - User\",\"type\":\"plugin\",\"creationDate\":\"November 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for the Core User Manager\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10035,'scout','component','com_scout','',1,1,0,0,'{\"legacy\":true,\"name\":\"Scout\",\"type\":\"component\",\"creationDate\":\"June 2009\",\"author\":\"Dioscouri.com\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.1.0\",\"description\":\"An activity monitor for Joomla\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
 /*!40000 ALTER TABLE `lsf3y_extensions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1492,7 +1504,7 @@ CREATE TABLE `lsf3y_menu` (
   KEY `idx_alias` (`alias`),
   KEY `idx_path` (`path`(255)),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1501,7 +1513,7 @@ CREATE TABLE `lsf3y_menu` (
 
 LOCK TABLES `lsf3y_menu` WRITE;
 /*!40000 ALTER TABLE `lsf3y_menu` DISABLE KEYS */;
-INSERT INTO `lsf3y_menu` VALUES (1,'','Menu_Item_Root','root','','','','',1,0,0,0,0,0,'0000-00-00 00:00:00',0,0,'',0,'',0,43,0,'*',0);
+INSERT INTO `lsf3y_menu` VALUES (1,'','Menu_Item_Root','root','','','','',1,0,0,0,0,0,'0000-00-00 00:00:00',0,0,'',0,'',0,45,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (2,'menu','com_banners','Banners','','Banners','index.php?option=com_banners','component',0,1,1,4,0,0,'0000-00-00 00:00:00',0,0,'class:banners',0,'',1,10,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (3,'menu','com_banners','Banners','','Banners/Banners','index.php?option=com_banners','component',0,2,2,4,0,0,'0000-00-00 00:00:00',0,0,'class:banners',0,'',2,3,0,'*',1);
 INSERT INTO `lsf3y_menu` VALUES (4,'menu','com_banners_categories','Categories','','Banners/Categories','index.php?option=com_categories&extension=com_banners','component',0,2,2,6,0,0,'0000-00-00 00:00:00',0,0,'class:banners-cat',0,'',4,5,0,'*',1);
@@ -1523,6 +1535,7 @@ INSERT INTO `lsf3y_menu` VALUES (104,'mainmenu','station 2','station-2','','stat
 INSERT INTO `lsf3y_menu` VALUES (105,'mainmenu','Kiosk','kiosk','','kiosk','index.php?option=com_mediamanager&view=item&layout=view&task=view&id=4','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',37,38,0,'*',0);
 INSERT INTO `lsf3y_menu` VALUES (106,'main','COM_LOCATOR','com-locator','','com-locator','index.php?option=com_locator','component',0,1,1,10015,0,0,'0000-00-00 00:00:00',0,1,'../media/com_locator/images/locator_16.png',0,'',39,40,0,'',1);
 INSERT INTO `lsf3y_menu` VALUES (107,'mainmenu','slogs','slogs','','slogs','index.php?option=com_mediamanager&view=station&layout=logs&task=logs','component',1,1,1,10011,0,0,'0000-00-00 00:00:00',0,1,'',0,'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":0,\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',41,42,0,'*',0);
+INSERT INTO `lsf3y_menu` VALUES (108,'main','Scout','scout','','scout','index.php?option=com_scout','component',0,1,1,10035,0,0,'0000-00-00 00:00:00',0,1,'../media/com_scout/images/scout_16.png',0,'',43,44,0,'',1);
 /*!40000 ALTER TABLE `lsf3y_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1637,7 +1650,7 @@ CREATE TABLE `lsf3y_modules` (
   KEY `published` (`published`,`access`),
   KEY `newsfeeds` (`module`,`published`),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1664,6 +1677,7 @@ INSERT INTO `lsf3y_modules` VALUES (92,'Statistics Overview','','',1,'sidebar',0
 INSERT INTO `lsf3y_modules` VALUES (94,'Site Statistics','','',1,'left',0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',1,'mod_rokstats',1,1,'{\"sessiontime\":\"\",\"showcurrentactiveusers\":\"1\",\"showactiveguests\":\"1\",\"showactiveregistered\":\"1\",\"showregisteredusernames\":\"0\",\"showuniqueviststoday\":\"1\",\"showuniquevistsyesterday\":\"1\",\"showvisitsthisweek\":\"1\",\"showvisitspreviousweek\":\"1\",\"showtotalarticles\":\"0\",\"shownewarticlesthisweek\":\"0\"}',0,'en-GB');
 INSERT INTO `lsf3y_modules` VALUES (96,'User Activity Chart','','',2,'sidebar',0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',1,'mod_rokuserchart',1,1,'{\"extra_class\":\"\",\"history\":\"7\",\"width\":\"285\",\"height\":\"120\"}',1,'en-GB');
 INSERT INTO `lsf3y_modules` VALUES (98,'Admin Audit Trail','','',3,'sidebar',0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',1,'mod_rokadminaudit',1,1,'{\"userpurgedays\":\"14\",\"adminpurgedays\":\"14\",\"trackusers\":\"1\",\"trackadmins\":\"1\"}',1,'en-GB');
+INSERT INTO `lsf3y_modules` VALUES (99,'Recent Activity','','',0,'cpanel',0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',1,'mod_scout_activity',1,1,'',1,'*');
 /*!40000 ALTER TABLE `lsf3y_modules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1705,6 +1719,7 @@ INSERT INTO `lsf3y_modules_menu` VALUES (92,0);
 INSERT INTO `lsf3y_modules_menu` VALUES (94,0);
 INSERT INTO `lsf3y_modules_menu` VALUES (96,0);
 INSERT INTO `lsf3y_modules_menu` VALUES (98,0);
+INSERT INTO `lsf3y_modules_menu` VALUES (99,0);
 /*!40000 ALTER TABLE `lsf3y_modules_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1789,7 +1804,7 @@ CREATE TABLE `lsf3y_rokadminaudit` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=1193 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1219 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2129,6 +2144,32 @@ INSERT INTO `lsf3y_rokadminaudit` VALUES (1189,84,'127.0.0.1','bdbe60fbab049b925
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1190,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-16 22:10:51');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1191,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','save',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','slogs','2013-05-16 22:11:18');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1192,84,'127.0.0.1','bdbe60fbab049b9254cf0cc15271d7d0','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-16 22:11:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1193,0,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_cpanel','',NULL,'/administrator/','','','2013-05-21 14:56:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1194,0,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_login','login',NULL,'/administrator/index.php','http://watch.2win.co/administrator/','','2013-05-21 14:56:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1195,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_cpanel','',NULL,'/administrator/index.php','http://watch.2win.co/administrator/','','2013-05-21 14:56:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1196,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer','http://watch.2win.co/administrator/index.php','','2013-05-21 14:56:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1197,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer','','2013-05-21 14:57:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1198,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer','','2013-05-21 14:57:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1199,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1200,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1201,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1202,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1203,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1204,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:01:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1205,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:02:45');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1206,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=install','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:02:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1207,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:02:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1208,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://watch.2win.co/administrator/index.php?option=com_installer&view=install','','2013-05-21 15:02:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1209,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://watch.2win.co/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:02:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1210,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://watch.2win.co/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:03:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1211,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','add',0,'/administrator/index.php?option=com_scout&controller=scopes&view=scopes','http://watch.2win.co/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:03:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1212,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','save',0,'/administrator/index.php?option=com_scout&controller=scopes&view=scopes&task=edit&id=0','http://watch.2win.co/administrator/index.php?option=com_scout&controller=scopes&view=scopes','','2013-05-21 15:04:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1213,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://watch.2win.co/administrator/index.php?option=com_scout&controller=scopes&view=scopes','','2013-05-21 15:04:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1214,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://watch.2win.co/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:04:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1215,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=config','http://watch.2win.co/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:04:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1216,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://watch.2win.co/administrator/index.php?option=com_scout&view=config','','2013-05-21 15:04:08');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1217,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://watch.2win.co/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:04:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1218,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://watch.2win.co/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:04:13');
 /*!40000 ALTER TABLE `lsf3y_rokadminaudit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2152,7 +2193,7 @@ CREATE TABLE `lsf3y_rokuserstats` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2199,6 +2240,16 @@ INSERT INTO `lsf3y_rokuserstats` VALUES (102,0,'127.0.0.1','e9ec11adb6428aa8dba1
 INSERT INTO `lsf3y_rokuserstats` VALUES (103,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:09:05');
 INSERT INTO `lsf3y_rokuserstats` VALUES (104,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-16 22:09:31');
 INSERT INTO `lsf3y_rokuserstats` VALUES (105,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/slogs','','2013-05-16 22:11:25');
+INSERT INTO `lsf3y_rokuserstats` VALUES (106,0,'69.27.7.162','cdf775afe089ed0fb40a0b97ad1e0c43','/','','2013-05-16 22:22:36');
+INSERT INTO `lsf3y_rokuserstats` VALUES (107,0,'69.27.7.162','cdf775afe089ed0fb40a0b97ad1e0c43','/slogs','','2013-05-16 22:22:42');
+INSERT INTO `lsf3y_rokuserstats` VALUES (108,0,'69.27.7.162','cdf775afe089ed0fb40a0b97ad1e0c43','/?uuid=123412341234131','','2013-05-16 22:23:38');
+INSERT INTO `lsf3y_rokuserstats` VALUES (109,0,'69.27.7.162','abde29cfcd61b108c71f474d90a8843e','/?uuid=123412341234131','','2013-05-17 17:20:26');
+INSERT INTO `lsf3y_rokuserstats` VALUES (110,0,'69.27.7.162','f65f019570d300a5c27c7b623cbe9ab6','/?uuid=123412341234131','','2013-05-17 17:20:39');
+INSERT INTO `lsf3y_rokuserstats` VALUES (111,0,'65.52.100.214','be46b7acb7a85a34ed6e1d2d9dd9356e','/?uuid=123412341234131','','2013-05-17 20:51:37');
+INSERT INTO `lsf3y_rokuserstats` VALUES (112,0,'69.27.7.162','f65f019570d300a5c27c7b623cbe9ab6','/?uuid=123412341234131','','2013-05-17 21:20:29');
+INSERT INTO `lsf3y_rokuserstats` VALUES (113,0,'69.27.7.162','abde29cfcd61b108c71f474d90a8843e','/?uuid=123412341234131','','2013-05-17 22:26:29');
+INSERT INTO `lsf3y_rokuserstats` VALUES (114,0,'69.27.7.162','eec76cd22578ddce86bd32fa3145fb77','/?uuid=123412341234131','http://webmail.crosscliq.com/src/read_body.php?mailbox=INBOX&passed_id=96&startMessage=1','2013-05-20 19:59:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (115,0,'69.27.7.162','eec76cd22578ddce86bd32fa3145fb77','/slogs','http://webmail.crosscliq.com/src/read_body.php?mailbox=INBOX&passed_id=95&startMessage=1','2013-05-20 19:59:55');
 /*!40000 ALTER TABLE `lsf3y_rokuserstats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2224,6 +2275,189 @@ LOCK TABLES `lsf3y_schemas` WRITE;
 /*!40000 ALTER TABLE `lsf3y_schemas` DISABLE KEYS */;
 INSERT INTO `lsf3y_schemas` VALUES (700,'2.5.11');
 /*!40000 ALTER TABLE `lsf3y_schemas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_config`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_config` (
+  `config_id` int(11) NOT NULL AUTO_INCREMENT,
+  `config_name` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`config_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_config`
+--
+
+LOCK TABLES `lsf3y_scout_config` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_config` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_scout_config` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_logs`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_logs` (
+  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `datetime` datetime NOT NULL COMMENT 'Always in GMT',
+  `subject_id` int(11) NOT NULL,
+  `verb_id` int(11) NOT NULL,
+  `object_id` int(11) NOT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `subject_id` (`subject_id`),
+  KEY `object_id` (`object_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_logs`
+--
+
+LOCK TABLES `lsf3y_scout_logs` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_scout_logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_objects`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_objects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_objects` (
+  `object_id` int(11) NOT NULL AUTO_INCREMENT,
+  `object_name` varchar(255) NOT NULL,
+  `scope_id` int(11) NOT NULL,
+  `object_value` text NOT NULL,
+  PRIMARY KEY (`object_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_objects`
+--
+
+LOCK TABLES `lsf3y_scout_objects` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_objects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_scout_objects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_scopes`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_scopes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_scopes` (
+  `scope_id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` tinyint(1) NOT NULL COMMENT '0=site, 1=administrator',
+  `scope_name` varchar(255) NOT NULL COMMENT 'Plain English name for the scope',
+  `scope_identifier` varchar(255) NOT NULL COMMENT 'String unique ID for the scope',
+  `scope_url` text NOT NULL,
+  PRIMARY KEY (`scope_id`),
+  KEY `scope_identifier` (`scope_identifier`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_scopes`
+--
+
+LOCK TABLES `lsf3y_scout_scopes` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_scopes` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_scopes` VALUES (1,0,'Media Station','com_mediamanager.station','index.php?option=com_mediamanager&view=station');
+/*!40000 ALTER TABLE `lsf3y_scout_scopes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_subjects`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_subjects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_subjects` (
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject_name` varchar(255) NOT NULL,
+  `subjecttype_id` int(11) NOT NULL,
+  `subject_value` text NOT NULL,
+  PRIMARY KEY (`subject_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_subjects`
+--
+
+LOCK TABLES `lsf3y_scout_subjects` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_subjects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_scout_subjects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_subjecttypes`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_subjecttypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_subjecttypes` (
+  `subjecttype_id` int(11) NOT NULL AUTO_INCREMENT,
+  `subjecttype_name` varchar(255) NOT NULL,
+  `subjecttype_value` text NOT NULL,
+  `site_url` text NOT NULL,
+  `admin_url` text NOT NULL,
+  PRIMARY KEY (`subjecttype_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Index of subject types, such as user, plugin, cronjob, etc';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_subjecttypes`
+--
+
+LOCK TABLES `lsf3y_scout_subjecttypes` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_subjecttypes` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_subjecttypes` VALUES (1,'A User','user','','index.php?option=com_users&view=user&task=edit&cid[]=');
+INSERT INTO `lsf3y_scout_subjecttypes` VALUES (2,'A Plugin','plugin','','');
+INSERT INTO `lsf3y_scout_subjecttypes` VALUES (3,'A CronJob','cronjob','','');
+/*!40000 ALTER TABLE `lsf3y_scout_subjecttypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_scout_verbs`
+--
+
+DROP TABLE IF EXISTS `lsf3y_scout_verbs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_scout_verbs` (
+  `verb_id` int(11) NOT NULL AUTO_INCREMENT,
+  `verb_name` varchar(255) NOT NULL,
+  `verb_value` text NOT NULL,
+  PRIMARY KEY (`verb_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_scout_verbs`
+--
+
+LOCK TABLES `lsf3y_scout_verbs` WRITE;
+/*!40000 ALTER TABLE `lsf3y_scout_verbs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_scout_verbs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2255,8 +2489,7 @@ CREATE TABLE `lsf3y_session` (
 
 LOCK TABLES `lsf3y_session` WRITE;
 /*!40000 ALTER TABLE `lsf3y_session` DISABLE KEYS */;
-INSERT INTO `lsf3y_session` VALUES ('bdbe60fbab049b9254cf0cc15271d7d0',1,0,'1368742278','__default|a:8:{s:15:\"session.counter\";i:14;s:19:\"session.timer.start\";i:1368742228;s:18:\"session.timer.last\";i:1368742278;s:17:\"session.timer.now\";i:1368742278;s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":3:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}s:9:\"com_menus\";O:8:\"stdClass\":2:{s:5:\"items\";O:8:\"stdClass\":2:{s:6:\"filter\";O:8:\"stdClass\":1:{s:8:\"menutype\";s:8:\"mainmenu\";}s:10:\"limitstart\";i:0;}s:4:\"edit\";O:8:\"stdClass\":1:{s:4:\"item\";O:8:\"stdClass\":3:{s:4:\"data\";N;s:4:\"type\";N;s:4:\"link\";N;}}}s:4:\"item\";O:8:\"stdClass\":1:{s:6:\"filter\";O:8:\"stdClass\":1:{s:8:\"menutype\";s:8:\"mainmenu\";}}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-16 20:58:10\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";s:1:\"8\";}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"9691fc64a2a94e0b5669cdb78a9d09c5\";}',84,'chris','');
-INSERT INTO `lsf3y_session` VALUES ('e9ec11adb6428aa8dba16fb45406b88b',0,1,'1368742285','__default|a:8:{s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:15:\"session.counter\";i:25;s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";N;s:2:\"id\";i:0;s:4:\"name\";N;s:8:\"username\";N;s:5:\"email\";N;s:8:\"password\";N;s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";N;s:5:\"block\";N;s:9:\"sendEmail\";i:0;s:12:\"registerDate\";N;s:13:\"lastvisitDate\";N;s:10:\"activation\";N;s:6:\"params\";N;s:6:\"groups\";a:0:{}s:5:\"guest\";i:1;s:13:\"lastResetTime\";N;s:10:\"resetCount\";N;s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:14:\"\0*\0_authGroups\";N;s:14:\"\0*\0_authLevels\";a:2:{i:0;i:1;i:1;i:1;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:19:\"session.timer.start\";i:1368741150;s:18:\"session.timer.last\";i:1368742171;s:17:\"session.timer.now\";i:1368742285;s:13:\"session.token\";s:32:\"66f5e82bf7418e35fba7e8a128f02a21\";}',0,'','');
+INSERT INTO `lsf3y_session` VALUES ('4ea66a6b684e428d3eecf9bda7eb88c1',1,0,'1369148653','__default|a:8:{s:15:\"session.counter\";i:26;s:19:\"session.timer.start\";i:1369148177;s:18:\"session.timer.last\";i:1369148653;s:17:\"session.timer.now\";i:1369148653;s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":4:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}s:13:\"com_installer\";O:8:\"stdClass\":3:{s:7:\"message\";s:0:\"\";s:17:\"extension_message\";s:0:\"\";s:12:\"redirect_url\";N;}s:6:\"global\";O:8:\"stdClass\":1:{s:4:\"list\";O:8:\"stdClass\":1:{s:5:\"limit\";s:2:\"20\";}}s:18:\"administrator::com\";O:8:\"stdClass\":1:{s:9:\"com_scout\";O:8:\"stdClass\":1:{s:5:\"model\";O:8:\"stdClass\":8:{s:16:\"scopeslimitstart\";i:0;s:6:\"scopes\";O:8:\"stdClass\":3:{s:12:\"filter_order\";s:12:\"tbl.scope_id\";s:16:\"filter_direction\";s:3:\"ASC\";s:6:\"filter\";s:0:\"\";}s:20:\"scopesfilter_id_from\";s:0:\"\";s:18:\"scopesfilter_id_to\";s:0:\"\";s:17:\"scopesfilter_name\";s:0:\"\";s:12:\"scopesclient\";s:0:\"\";s:16:\"scopesidentifier\";s:0:\"\";s:9:\"scopesurl\";s:0:\"\";}}}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-16 22:10:34\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";N;}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"8002cf68f0ab496c872e404e6cc8bc1a\";}',84,'chris','');
 /*!40000 ALTER TABLE `lsf3y_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2644,7 +2877,7 @@ CREATE TABLE `lsf3y_users` (
 
 LOCK TABLES `lsf3y_users` WRITE;
 /*!40000 ALTER TABLE `lsf3y_users` DISABLE KEYS */;
-INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-16 22:10:34','0','','0000-00-00 00:00:00',0);
+INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-21 14:56:24','0','','0000-00-00 00:00:00',0);
 INSERT INTO `lsf3y_users` VALUES (85,'Advertising Manager','ads','chris@crosscliq.com','b3593d33aa5feadb49c3db99096d1413:3G3mW4OLU1ViEk2ceahR3ag4T2SxHuk1','',0,0,'2013-05-16 16:39:55','2013-05-16 18:00:56','','{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `lsf3y_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2687,4 +2920,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-16 16:12:36
+-- Dump completed on 2013-05-21 15:04:36

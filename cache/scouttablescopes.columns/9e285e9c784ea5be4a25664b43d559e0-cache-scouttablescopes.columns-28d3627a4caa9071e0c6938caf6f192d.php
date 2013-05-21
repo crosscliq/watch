@@ -1,0 +1,1 @@
+<?php die("Access Denied"); ?>#x#a:1:{s:15:"#__scout_scopes";a:5:{s:8:"scope_id";s:3:"int";s:9:"client_id";s:7:"tinyint";s:10:"scope_name";s:7:"varchar";s:16:"scope_identifier";s:7:"varchar";s:9:"scope_url";s:4:"text";}}
