@@ -16,5 +16,13 @@
        <name>Files</name>
        <url>index.php?option=com_mediamanager&#38;view=files</url>
    </link>
+   <link>
+       <name>Advertisers</name>
+       <url>index.php?option=com_mediamanager&#38;view=advertisers</url>
+   </link>
+    <link>
+       <name>Charging Data</name>
+       <url>index.php?option=com_mediamanager&#38;view=charging</url>
+   </link>
    
 </menu>

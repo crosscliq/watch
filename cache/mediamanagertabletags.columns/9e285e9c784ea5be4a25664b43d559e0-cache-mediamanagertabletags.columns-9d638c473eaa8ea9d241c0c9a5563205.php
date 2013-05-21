@@ -1,1 +1,0 @@
-<?php die("Access Denied"); ?>#x#a:1:{s:20:"#__mediamanager_tags";a:3:{s:6:"tag_id";s:3:"int";s:9:"tag_title";s:7:"varchar";s:10:"admin_only";s:7:"tinyint";}}

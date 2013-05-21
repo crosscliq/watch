@@ -32,9 +32,9 @@ class MediaManagerControllerStation extends MediaManagerController
 	    // load the media item
         $model = $this->getModel( 'station' );
         $uuid = $model->getUUID();
-   
+  
         $station = $model->getItembyUUID( $uuid );
-        
+       //  var_dump($station);
         
         if (empty($station->media_id) || empty($station->media->media_type) || empty($station->media->media_enabled))
         {
@@ -44,6 +44,7 @@ class MediaManagerControllerStation extends MediaManagerController
         
         $hmodel = $this->getModel( 'handlers' );
         $handler = $hmodel->getTable();
+      
         $handler->load( array( 'element'=>$station->media->media_type ) );
         $key = $handler->getKeyName();
         if (empty($handler->$key))
@@ -71,7 +72,7 @@ class MediaManagerControllerStation extends MediaManagerController
         $html = '';
         $dispatcher = JDispatcher::getInstance();
         $results = $dispatcher->trigger( 'onDisplayMediaItem', array( $handler, $station->media ) );
-
+        
         for ($i=0; $i<count($results); $i++) 
         {
             $html .= $results[$i];
@@ -146,9 +147,43 @@ class MediaManagerControllerStation extends MediaManagerController
 	
 	
     function logs() {
-        $post = JRequest::get( 'post' );
+       
+        $string = file_get_contents($_FILES['files']['tmp_name']);
+        $string = trim($string);
+        $string = substr( $string , strpos($string, '000000'));
 
-        var_dump($post);
+
+        $data = array_chunk(str_getcsv($string, ','), '11'); 
+
+        var_dump($data);
+
+      foreach ($data  as $row) {
+        /*
+        $row[0] == timestamps of seconds passed the time of the file is created;
+        $row[1] == USB PORT 1
+        $row[2] == USB PORT 2
+        $row[3] == USB PORT 3
+        $row[4] == USB PORT 4
+        $row[5] == USB PORT 5
+        $row[6] == USB PORT 6
+        $row[7] == USB PORT 7
+        $row[8] == USB PORT 8
+        */
+      }
+
+
+       /* //lets save the file to disk;
+        var_dump($_FILES);
+        $uploaddir = MediaManager::getPath() . '/logs/';
+        $uploadfile = $uploaddir . basename($_FILES['files']['name']);
+echo '<pre>';
+if (move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile)) {
+    echo "File is valid, and was successfully uploaded.\n";
+} else {
+    echo "Possible file upload attack!\n";
+}*/
+
+
         die();
     }
 

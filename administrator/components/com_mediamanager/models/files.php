@@ -78,7 +78,8 @@ class MediaManagerModelFiles extends MediaManagerModelBase
             $where[] = 'LOWER(tbl.file_path) LIKE '.$key;
             $query->where('('.implode(' OR ', $where).')');
         }
-    }
+    }   
+   
     
 	public function getList($refresh=false)
 	{	

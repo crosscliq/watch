@@ -450,6 +450,8 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
 
         $id = $values['id'];
         $media_item->load( $id );
+
+
     
         if (!empty($values['item_remote_new']) && !empty($values['add_type']) && $values['add_type'] == 'add_new_file')
         {
@@ -541,6 +543,8 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
             $file->file_extension = JFile::getExt( $file->file_path );
             $file->file_name = JFile::getName( $file->file_path );
             $file->file_enabled = '1';
+
+
             if ($file->save())
             {
                 // add this file to this media item
@@ -595,18 +599,29 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
 
         $id = $values['id'];
         $media_item->load( $id );
-    
-            $item_remote_new = $values['video_params']['webm'];
-
+            //mp4
+            if(strlen($values['video_params']['mp4'])) {
+                $item_remote_new = $values['video_params']['mp4'];
+            }
+            //ogg better than mp4 rulezzzzz all
+            if(strlen($values['video_params']['ogg'])) {
+                $item_remote_new = $values['video_params']['ogg'];
+            }
+            //webm rulezzzzz all
+            if(strlen($values['video_params']['webm'])) {
+                  $item_remote_new = $values['video_params']['webm'];
+            }
+            
 
             jimport('joomla.filesystem.file');
             $file = JTable::getInstance( 'Files', 'MediaManagerTable' );
             $file->file_url = $item_remote_new;
-            $file->file_extension = 'html5video';
+          //  $file->file_extension = 'html5video';
             $file->file_title = $values['video_title'];
             $file->file_params = serialize($values['video_params']);
             $file->file_extension = JFile::getExt( $file->file_url );
             $file->file_name = JFile::getName( $file->file_url );
+            $file->advertiser_id = $values['video_advertiser_id'];
             $file->file_enabled = '1';
             if ($file->save())
             {

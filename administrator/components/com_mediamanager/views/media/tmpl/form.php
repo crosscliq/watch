@@ -141,7 +141,7 @@
         
     </fieldset>
     
-    <fieldset>
+   <?php  /* <fieldset>
     
         <legend><?php echo JText::_( "Details" ); ?></legend>
         
@@ -168,7 +168,7 @@
                     <?php // echo $this->loadTemplate( 'tags' ); ?>
                 </div>
             </div>
-            <div class="dsc-row">
+             <div class="dsc-row">
                 <div class="dsc-cell dsc-key">
                     <?php echo JText::_( 'Short Description' ); ?>:
                 </div>
@@ -185,10 +185,10 @@
                     <?php $editor = JFactory::getEditor( ); ?>
                     <?php echo $editor->display( 'media_description_full', @$row->media_description_full, '100%', '450', '100', '20' ); ?>                
                 </div>
-            </div>
+            </div> 
         </div>
 
-    </fieldset>
+    </fieldset>*/ ?>
     
     <?php if (!empty($this->handler_html)) { ?>
     <fieldset>

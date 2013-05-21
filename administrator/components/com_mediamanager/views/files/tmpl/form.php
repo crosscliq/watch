@@ -25,6 +25,17 @@
         <p><?php echo JText::_( "COM_MEDIAMANAGER_LEAVE_FILE_DETAILS_BLANK_WHEN_UPLOADING_NEW_FILE" ); ?>
 
         <div class="dsc-table">
+             <div class="dsc-row">
+                <div class="dsc-cell dsc-key">
+                    <?php echo JText::_( 'Advertiser' ); ?>:
+                </div>
+                <div class="dsc-cell dsc-value">
+                    <?php JModel::addIncludePath( JPATH_ADMINISTRATOR . '/components/com_mediamanager/models' );
+        $model = JModel::getInstance( 'ElementAdvertisers', 'MediamanagerModel' );
+        echo $model->fetchElement('advertiser', (int) $row->advertiser_id, '', '', 'advertiser_id' );?>
+                   
+                </div>
+            </div>
             <div class="dsc-row">
                 <div class="dsc-cell dsc-key">
                     <?php echo JText::_( 'File Name' ); ?>:
@@ -69,6 +80,8 @@
                     <input name="file_extension" value="<?php echo @$row->file_extension; ?>" size="10" maxlength="10" type="text" />
                 </div>
             </div>
+
+
             
             <div class="dsc-row">
                 <div class="dsc-cell dsc-key">

@@ -32,7 +32,10 @@ $params = $vars->row->params;
                                 case 'mp4': ?>
                                     <li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="300" data-thumb="<?php echo $item->file; ?>">
                                         <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                                       <video width="850" height="600" controls>
+                                      
+
+                                    <div class="caption fade fullscreenvideo" data-autoplay="false" data-x="0" data-y="0" data-speed="500" data-start="10" data-easing="easeOutBack">
+                                         <video width="1920" height="1280" controls Autobuffer>
                     <?php   
                     $string = unserialize($item->file_params);
                     foreach ($string as $skey => $value) : ?>
@@ -45,7 +48,8 @@ $params = $vars->row->params;
                         
                     <?php endforeach; ?>
                 Your browser does not support the video tag.
-                </video>
+                </video></div>
+
                                     </li>
                                <?php  break;
                                 
@@ -389,13 +393,13 @@ $params = $vars->row->params;
 
 
         <script>
-         /*   var api;
+           var api;
             jQuery(document).ready(function() {
                  api =  jQuery('.fullwidthabnner').revolution(
                                 {
                                     delay:9000,
-                                    startheight:500,
-                                    startwidth:960,
+                                    startheight:1280,
+                                    startwidth:1920,
 
                                     hideThumbs:10,
 
@@ -433,7 +437,7 @@ $params = $vars->row->params;
                                     stopAfterLoops:-1,
 
                                     shadow:1,                               //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
-                                    fullWidth:"on"                          // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+                                    //fullWidth:"on"                          // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
                                 });
             });
         </script>

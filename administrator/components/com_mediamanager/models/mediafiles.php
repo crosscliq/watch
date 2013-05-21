@@ -84,4 +84,26 @@ class MediaManagerModelMediaFiles extends MediaManagerModelBase
         $query->select( $this->getState( 'select', 'tbl.*' ) );     
         $query->select( $fields );
     }
+
+    protected function prepareItem( &$item, $key=0, $refresh=false )
+    {       
+            $item->link = 'index.php?option=com_mediamanager&view=files&task=edit&id='.$item->file_id;
+            
+            if($item->advertiser_id) {
+                MediaManager::load('MediaManagerTableAdvertisers','tables.advertisers'); 
+                $table = JTable::getInstance('Advertisers', 'MediaManagerTable');
+                $table->load($item->advertiser_id);
+                if($table->advertiser_name) {
+                 $item->advertiser_name =   $table->advertiser_name;
+                } else {
+                 $item->advertiser_name = 'Not Assigned';   
+                }
+            } else {
+                 $item->advertiser_name = 'Not Assigned';   
+                }
+
+
+            parent::prepareItem($item, $key, $refresh );
+        
+    }
 }

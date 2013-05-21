@@ -1,0 +1,1 @@
+<?php die("Access Denied"); ?>#x#a:1:{s:27:"#__mediamanager_advertisers";a:4:{s:13:"advertiser_id";s:3:"int";s:15:"advertiser_name";s:7:"varchar";s:18:"advertiser_contact";s:7:"varchar";s:16:"advertiser_phone";s:7:"varchar";}}

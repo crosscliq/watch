@@ -75,7 +75,7 @@ class ScoutController extends JController
 
 		// gets the plugin named $element
 			$import 	= JPluginHelper::importPlugin( 'scout', $element );
-			$dispatcher	=& JDispatcher::getInstance();
+			$dispatcher	= JDispatcher::getInstance();
 			
 		// executes the event $elementTask for the $element plugin
 		// returns the html from the plugin

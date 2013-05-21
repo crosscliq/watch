@@ -31,13 +31,16 @@
             <th class="key" style="text-align: center;">
                 <?php echo JTEXT::_('COM_MEDIAMANAGER_MEDIAFILE_ID') ;?>
             </th>
+             <th class="key" style="text-align: center;">
+                <?php echo JTEXT::_('Advertiser Name') ;?>
+            </th>
         </tr>
     </thead>
     <tbody> 
         <?php 
         $i=0;
         foreach ($vars->list as $item) : 
-
+       
           
         ?>
         <tr>
@@ -128,6 +131,9 @@
             <td style="text-align: center;">
                 <?php echo $item->mediafile_id; ?>
                 <input type="hidden" name="mediafile_ids[]" value="<?php echo $item->mediafile_id; ?>" />
+            </td>
+            <td style="text-align: center;">
+                <?php echo $item->advertiser_name; ?>
             </td>
         </tr>
         <?php 

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.25, for osx10.6 (i386)
 --
 -- Host: localhost    Database: kiosk
 -- ------------------------------------------------------
--- Server version	5.5.31-0ubuntu0.12.04.1
+-- Server version	5.5.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -518,7 +518,7 @@ CREATE TABLE `lsf3y_extensions` (
   KEY `element_clientid` (`element`,`client_id`),
   KEY `element_folder_clientid` (`element`,`folder`,`client_id`),
   KEY `extension` (`type`,`element`,`folder`,`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10036 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10037 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,6 +660,7 @@ INSERT INTO `lsf3y_extensions` VALUES (10032,'Scout - System','plugin','scout','
 INSERT INTO `lsf3y_extensions` VALUES (10033,'Scout - Tracking Tienda Activity','plugin','scout','tienda',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - Tracking Tienda Activity\",\"type\":\"plugin\",\"creationDate\":\"February 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for Tienda\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
 INSERT INTO `lsf3y_extensions` VALUES (10034,'Scout - User','plugin','scout','user',0,1,1,0,'{\"legacy\":true,\"name\":\"Scout - User\",\"type\":\"plugin\",\"creationDate\":\"November 2010\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for the Core User Manager\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
 INSERT INTO `lsf3y_extensions` VALUES (10035,'scout','component','com_scout','',1,1,0,0,'{\"legacy\":true,\"name\":\"Scout\",\"type\":\"component\",\"creationDate\":\"June 2009\",\"author\":\"Dioscouri.com\",\"copyright\":\"2010 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.1.0\",\"description\":\"An activity monitor for Joomla\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
+INSERT INTO `lsf3y_extensions` VALUES (10036,'Scout - MediaManager','plugin','scout','mediamanager',0,1,1,0,'{\"legacy\":false,\"name\":\"Scout - MediaManager\",\"type\":\"plugin\",\"creationDate\":\"November 2012\",\"author\":\"Dioscouri Design\",\"copyright\":\"2008 Dioscouri.com\",\"authorEmail\":\"info@dioscouri.com\",\"authorUrl\":\"http:\\/\\/www.dioscouri.com\",\"version\":\"0.6.0\",\"description\":\"Enables Scout activity logging for the Media manager\",\"group\":\"\"}','{}','','',0,'0000-00-00 00:00:00',0,0);
 /*!40000 ALTER TABLE `lsf3y_extensions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,6 +745,34 @@ LOCK TABLES `lsf3y_locator_items` WRITE;
 /*!40000 ALTER TABLE `lsf3y_locator_items` DISABLE KEYS */;
 INSERT INTO `lsf3y_locator_items` VALUES (1,0,0,'STATION  1','','','','123 Fake Street','','Salt Lake City','UT','','USA','801-792-2869','PC',40.750000,-111.883301,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,NULL);
 /*!40000 ALTER TABLE `lsf3y_locator_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_mediamanager_advertisers`
+--
+
+DROP TABLE IF EXISTS `lsf3y_mediamanager_advertisers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_mediamanager_advertisers` (
+  `advertiser_id` int(11) NOT NULL AUTO_INCREMENT,
+  `advertiser_name` varchar(255) NOT NULL,
+  `advertiser_contact` varchar(255) NOT NULL,
+  `advertiser_phone` varchar(255) NOT NULL,
+  PRIMARY KEY (`advertiser_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_mediamanager_advertisers`
+--
+
+LOCK TABLES `lsf3y_mediamanager_advertisers` WRITE;
+/*!40000 ALTER TABLE `lsf3y_mediamanager_advertisers` DISABLE KEYS */;
+INSERT INTO `lsf3y_mediamanager_advertisers` VALUES (1,'Crosscliq','Ian Barkely','8015555555');
+INSERT INTO `lsf3y_mediamanager_advertisers` VALUES (2,'Whistler Blackcomb','whistlerblackcomb.com','');
+INSERT INTO `lsf3y_mediamanager_advertisers` VALUES (3,'Telus','','');
+/*!40000 ALTER TABLE `lsf3y_mediamanager_advertisers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -887,10 +916,11 @@ CREATE TABLE `lsf3y_mediamanager_files` (
   `file_extension` varchar(6) DEFAULT NULL,
   `file_mimetype` varchar(64) DEFAULT NULL,
   `is_external` tinyint(1) NOT NULL DEFAULT '0',
+  `advertiser_id` int(11) NOT NULL,
   PRIMARY KEY (`file_id`),
   KEY `file_title` (`file_title`),
   KEY `file_name` (`file_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -899,11 +929,18 @@ CREATE TABLE `lsf3y_mediamanager_files` (
 
 LOCK TABLES `lsf3y_mediamanager_files` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_files` DISABLE KEYS */;
-INSERT INTO `lsf3y_mediamanager_files` VALUES (19,NULL,NULL,1,NULL,'background0188.jpg','http://www.designmyprofile.com/images/graphics/backgrounds/background0188.jpg','','jpg',NULL,0);
-INSERT INTO `lsf3y_mediamanager_files` VALUES (20,NULL,NULL,1,NULL,'free-hd-desktop-wallpaper-background-5.jpg',NULL,'images/com_mediamanager/images/free-hd-desktop-wallpaper-background-5.jpg','jpg',NULL,0);
-INSERT INTO `lsf3y_mediamanager_files` VALUES (16,NULL,NULL,1,NULL,'Desktop-Backgrounds1.jpg',NULL,'images/Desktop-Backgrounds1.jpg','jpg',NULL,0);
-INSERT INTO `lsf3y_mediamanager_files` VALUES (17,NULL,NULL,1,NULL,'tiffany-diva-twitter-free-cute-twitter-background.jpg','http://www.wallpaperpin.com/webdisk/tiffany-diva-twitter-free-cute-twitter-background.jpg','','jpg',NULL,0);
-INSERT INTO `lsf3y_mediamanager_files` VALUES (18,NULL,NULL,1,NULL,'joomla_black.gif',NULL,'images/joomla_black.gif','gif',NULL,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (19,NULL,NULL,1,NULL,'background0188.jpg','http://www.designmyprofile.com/images/graphics/backgrounds/background0188.jpg','','jpg',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (20,NULL,NULL,1,NULL,'free-hd-desktop-wallpaper-background-5.jpg',NULL,'images/com_mediamanager/images/free-hd-desktop-wallpaper-background-5.jpg','jpg',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (16,NULL,NULL,1,NULL,'Desktop-Backgrounds1.jpg','','images/Desktop-Backgrounds1.jpg','jpg',NULL,0,1);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (17,NULL,NULL,1,NULL,'tiffany-diva-twitter-free-cute-twitter-background.jpg','http://www.wallpaperpin.com/webdisk/tiffany-diva-twitter-free-cute-twitter-background.jpg','','jpg',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (18,NULL,NULL,1,NULL,'joomla_black.gif',NULL,'images/joomla_black.gif','gif',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (23,'Elephants Video',NULL,1,'a:3:{s:4:\"webm\";s:47:\"http://video.webmfiles.org/elephants-dream.webm\";s:3:\"ogg\";s:0:\"\";s:3:\"mp4\";s:0:\"\";}','elephants-dream.webm','http://video.webmfiles.org/elephants-dream.webm','','webm',NULL,0,1);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (22,'Bunny',NULL,1,'a:3:{s:4:\"webm\";s:54:\"http://video.webmfiles.org/big-buck-bunny_trailer.webm\";s:3:\"ogg\";s:0:\"\";s:3:\"mp4\";s:0:\"\";}','big-buck-bunny_trailer.webm','http://video.webmfiles.org/big-buck-bunny_trailer.webm','','webm',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (25,'some video',NULL,1,'a:3:{s:4:\"webm\";s:52:\"http://techslides.com/demos/sample-videos/small.webm\";s:3:\"ogg\";s:0:\"\";s:3:\"mp4\";s:0:\"\";}','small.webm','http://techslides.com/demos/sample-videos/small.webm','','webm',NULL,0,1);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (26,NULL,NULL,1,NULL,'56534.jpg',NULL,'images/56534.jpg','jpg',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (27,NULL,NULL,1,NULL,'57770.jpg',NULL,'images/57770.jpg','jpg',NULL,0,0);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (29,'Cloud Files Stream Testing',NULL,1,'a:3:{s:4:\"webm\";s:91:\"http://be6ebbc57943a712af92-e3d77d0214a368a5cd98e92749508e9f.r99.cf2.rackcdn.com/55714.webm\";s:3:\"ogg\";s:0:\"\";s:3:\"mp4\";s:0:\"\";}','55714.webm','http://be6ebbc57943a712af92-e3d77d0214a368a5cd98e92749508e9f.r99.cf2.rackcdn.com/55714.webm','','webm',NULL,0,2);
+INSERT INTO `lsf3y_mediamanager_files` VALUES (31,'Cloud Files Stream Testing MP4',NULL,1,'a:3:{s:4:\"webm\";s:0:\"\";s:3:\"ogg\";s:0:\"\";s:3:\"mp4\";s:90:\"http://be6ebbc57943a712af92-e3d77d0214a368a5cd98e92749508e9f.r99.cf2.rackcdn.com/55715.mp4\";}','55715.mp4','http://be6ebbc57943a712af92-e3d77d0214a368a5cd98e92749508e9f.r99.cf2.rackcdn.com/55715.mp4','','mp4',NULL,0,2);
 /*!40000 ALTER TABLE `lsf3y_mediamanager_files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1056,7 +1093,7 @@ CREATE TABLE `lsf3y_mediamanager_media` (
   PRIMARY KEY (`media_id`),
   KEY `media_title` (`media_title`),
   KEY `media_type` (`media_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1066,6 +1103,7 @@ CREATE TABLE `lsf3y_mediamanager_media` (
 LOCK TABLES `lsf3y_mediamanager_media` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_media` DISABLE KEYS */;
 INSERT INTO `lsf3y_mediamanager_media` VALUES (4,'Testing Kiosk','','','','','',NULL,'[]','2013-05-15 18:27:40','slideshow_kiosk',1,NULL,'{\"slideshowdefault_include_jquery\":\"1\",\"slideshowdefault_show_caption\":\"0\",\"slideshowdefault_autoplay\":\"1\",\"slideshowdefault_auto_play_delay\":\"5000\",\"slideshowdefault_show_controls\":\"0\",\"slideshowdefault_slide_width\":\"640\",\"slideshowdefault_slide_height\":\"640\",\"slideshowdefault_container_width\":\"640\",\"slideshowdefault_container_height\":\"640\",\"slideshowdefault_loop\":\"1\",\"slideshowdefault_speed\":\"1000\"}',0,'slideshow');
+INSERT INTO `lsf3y_mediamanager_media` VALUES (5,'In House Testing Show','',NULL,NULL,'','',NULL,'[]','2013-05-21 22:04:14','slideshow_kiosk',1,NULL,'{\"slideshowdefault_include_jquery\":\"1\",\"slideshowdefault_show_caption\":\"0\",\"slideshowdefault_autoplay\":\"1\",\"slideshowdefault_auto_play_delay\":\"5000\",\"slideshowdefault_show_controls\":\"0\",\"slideshowdefault_slide_width\":\"640\",\"slideshowdefault_slide_height\":\"640\",\"slideshowdefault_container_width\":\"640\",\"slideshowdefault_container_height\":\"640\",\"slideshowdefault_loop\":\"1\",\"slideshowdefault_speed\":\"1000\"}',0,'slideshow');
 /*!40000 ALTER TABLE `lsf3y_mediamanager_media` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1111,7 +1149,7 @@ CREATE TABLE `lsf3y_mediamanager_mediafiles` (
   PRIMARY KEY (`mediafile_id`),
   KEY `media_id` (`media_id`),
   KEY `file_id` (`file_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1125,6 +1163,13 @@ INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (24,4,19,NULL);
 INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (23,4,18,NULL);
 INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (22,4,17,NULL);
 INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (21,4,16,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (28,4,23,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (27,4,22,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (30,4,25,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (31,5,26,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (32,5,27,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (34,5,29,NULL);
+INSERT INTO `lsf3y_mediamanager_mediafiles` VALUES (36,5,31,NULL);
 /*!40000 ALTER TABLE `lsf3y_mediamanager_mediafiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1214,7 +1259,7 @@ CREATE TABLE `lsf3y_mediamanager_slideshow_kiosk` (
   `publish_up` datetime NOT NULL,
   `publish_down` datetime NOT NULL,
   PRIMARY KEY (`slideshowkiosk_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1235,11 +1280,18 @@ INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (19,3,17,'',NULL,'',0,0,
 INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (20,3,18,'',NULL,'',0,0,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (21,3,19,'',NULL,'',0,0,2,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (22,3,20,'',NULL,'',0,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (23,4,21,'','','',0,1,5,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (24,4,22,'','','',0,1,4,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (25,4,23,'','','',0,1,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (26,4,24,'','','',0,1,2,'0000-00-00 00:00:00','0000-00-00 00:00:00');
-INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (27,4,25,'','','',0,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (23,4,21,'','','',0,1,8,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (24,4,22,'','','',0,1,7,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (25,4,23,'','','',0,1,6,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (26,4,24,'','','',0,1,5,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (27,4,25,'','','',0,1,4,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (30,4,28,'',NULL,'',0,1,2,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (29,4,27,'',NULL,'',0,1,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (32,4,30,'',NULL,'',0,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (33,5,31,'',NULL,'',0,1,4,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (34,5,32,'',NULL,'',0,1,3,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (36,5,34,'',NULL,'',0,1,2,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_slideshow_kiosk` VALUES (38,5,36,'',NULL,'',0,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `lsf3y_mediamanager_slideshow_kiosk` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1276,34 +1328,6 @@ LOCK TABLES `lsf3y_mediamanager_slideshow_pikachoose` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `lsf3y_mediamanager_stationdata`
---
-
-DROP TABLE IF EXISTS `lsf3y_mediamanager_stationdata`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lsf3y_mediamanager_stationdata` (
-  `stationdata_id` int(11) NOT NULL,
-  `station_id` int(11) NOT NULL,
-  `datecreated` datetime NOT NULL,
-  `datemodifited` datetime NOT NULL,
-  `connectedtime` datetime NOT NULL,
-  `disconnedtime` datetime NOT NULL,
-  `phonename` varchar(255) NOT NULL,
-  `brand` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lsf3y_mediamanager_stationdata`
---
-
-LOCK TABLES `lsf3y_mediamanager_stationdata` WRITE;
-/*!40000 ALTER TABLE `lsf3y_mediamanager_stationdata` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lsf3y_mediamanager_stationdata` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `lsf3y_mediamanager_stations`
 --
 
@@ -1331,7 +1355,7 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
   `enabled` tinyint(4) NOT NULL,
   `media_id` int(11) NOT NULL,
   PRIMARY KEY (`station_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1341,7 +1365,36 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
 LOCK TABLES `lsf3y_mediamanager_stations` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` DISABLE KEYS */;
 INSERT INTO `lsf3y_mediamanager_stations` VALUES (1,'123412341234131','Station 1','in a cool place','','123 Fake Street','APT #14','Sandy','Utah','USA','7XC43G','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,4);
+INSERT INTO `lsf3y_mediamanager_stations` VALUES (2,'f0:ae:51:00:04:ef','In House Testing Station','','f0:ae:51:00:04:ef','344 West 400 south','','Utah','Salt lake City','USA','84084','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,5);
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lsf3y_mediamanager_stationsdata`
+--
+
+DROP TABLE IF EXISTS `lsf3y_mediamanager_stationsdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lsf3y_mediamanager_stationsdata` (
+  `stationdata_id` int(11) NOT NULL,
+  `station_id` int(11) NOT NULL,
+  `datecreated` datetime NOT NULL,
+  `datemodifited` datetime NOT NULL,
+  `connectedtime` datetime NOT NULL,
+  `disconnedtime` datetime NOT NULL,
+  `phonename` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lsf3y_mediamanager_stationsdata`
+--
+
+LOCK TABLES `lsf3y_mediamanager_stationsdata` WRITE;
+/*!40000 ALTER TABLE `lsf3y_mediamanager_stationsdata` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lsf3y_mediamanager_stationsdata` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1804,7 +1857,7 @@ CREATE TABLE `lsf3y_rokadminaudit` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=1219 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1602 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2170,6 +2223,389 @@ INSERT INTO `lsf3y_rokadminaudit` VALUES (1215,84,'69.27.7.162','4ea66a6b684e428
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1216,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://watch.2win.co/administrator/index.php?option=com_scout&view=config','','2013-05-21 15:04:08');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1217,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://watch.2win.co/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:04:13');
 INSERT INTO `lsf3y_rokadminaudit` VALUES (1218,84,'69.27.7.162','4ea66a6b684e428d3eecf9bda7eb88c1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://watch.2win.co/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:04:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1219,0,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_cpanel','',NULL,'/administrator/index.php','','','2013-05-21 15:10:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1220,0,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 15:15:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1221,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 15:15:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1222,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://admanager.local/administrator/index.php','','2013-05-21 15:17:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1223,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php','','2013-05-21 15:17:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1224,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=subjects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:18:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1225,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=verbs','http://admanager.local/administrator/index.php?option=com_scout&view=subjects','','2013-05-21 15:18:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1226,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=config','http://admanager.local/administrator/index.php?option=com_scout&view=verbs','','2013-05-21 15:18:38');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1227,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=dashboard','http://admanager.local/administrator/index.php?option=com_scout&view=config','','2013-05-21 15:18:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1228,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=config','','2013-05-21 15:18:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1229,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:30:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1230,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:33:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1231,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=update','http://admanager.local/administrator/index.php?option=com_installer','','2013-05-21 15:33:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1232,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=manage','http://admanager.local/administrator/index.php?option=com_installer&view=update','','2013-05-21 15:33:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1233,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=discover','http://admanager.local/administrator/index.php?option=com_installer&view=manage','','2013-05-21 15:33:55');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1234,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','refresh',NULL,'/administrator/index.php?option=com_installer&view=discover','http://admanager.local/administrator/index.php?option=com_installer&view=discover','','2013-05-21 15:33:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1235,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=discover','http://admanager.local/administrator/index.php?option=com_installer&view=discover','','2013-05-21 15:33:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1236,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','install',NULL,'/administrator/index.php?option=com_installer&view=discover','http://admanager.local/administrator/index.php?option=com_installer&view=discover','','2013-05-21 15:34:01');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1237,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_installer','',NULL,'/administrator/index.php?option=com_installer&view=discover','http://admanager.local/administrator/index.php?option=com_installer&view=discover','','2013-05-21 15:34:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1238,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_plugins','',NULL,'/administrator/index.php?option=com_plugins','http://admanager.local/administrator/index.php?option=com_installer&view=discover','','2013-05-21 15:34:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1239,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_plugins','',NULL,'/administrator/index.php?option=com_plugins&view=plugins','http://admanager.local/administrator/index.php?option=com_plugins','','2013-05-21 15:34:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1240,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_plugins','publish',NULL,'/administrator/index.php?option=com_plugins&view=plugins','http://admanager.local/administrator/index.php?option=com_plugins&view=plugins','','2013-05-21 15:34:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1241,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_plugins','',NULL,'/administrator/index.php?option=com_plugins&view=plugins','http://admanager.local/administrator/index.php?option=com_plugins&view=plugins','','2013-05-21 15:34:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1242,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://admanager.local/administrator/index.php?option=com_plugins&view=plugins','','2013-05-21 15:34:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1243,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_plugins&view=plugins','','2013-05-21 15:34:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1244,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_plugins&view=plugins','','2013-05-21 15:34:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1245,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:34:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1246,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:34:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1247,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:34:56');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1248,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:34:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1249,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:35:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1250,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:35:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1251,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:35:03');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1252,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:35:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1253,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 15:35:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1254,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=subjects','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:35:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1255,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=verbs','http://admanager.local/administrator/index.php?option=com_scout&view=subjects','','2013-05-21 15:35:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1256,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=verbs','','2013-05-21 15:35:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1257,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=verbs','','2013-05-21 15:36:19');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1258,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=verbs','','2013-05-21 15:36:22');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1259,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:36:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1260,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','add',0,'/administrator/index.php?option=com_scout&controller=scopes&view=scopes','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:36:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1261,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_cpanel','',NULL,'/administrator/index.php','','','2013-05-21 15:37:10');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1262,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=menus','http://admanager.local/administrator/index.php','','2013-05-21 15:37:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1263,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_menus&view=menus','','2013-05-21 15:37:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1264,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_menus&view=menus','','2013-05-21 15:37:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1265,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:37:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1266,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:37:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1267,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:37:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1268,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:37:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1269,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:37:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1270,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 15:37:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1271,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','save',0,'/administrator/index.php?option=com_scout&controller=scopes&view=scopes&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_scout&controller=scopes&view=scopes','','2013-05-21 15:37:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1272,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=scopes','http://admanager.local/administrator/index.php?option=com_scout&controller=scopes&view=scopes','','2013-05-21 15:37:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1273,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_cache','',NULL,'/administrator/index.php?option=com_cache','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 15:39:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1274,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','close',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 15:40:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1275,84,'127.0.0.1','85b261f13d55ba271c203e066d8e6bd2','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 15:40:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1276,0,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 15:57:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1277,0,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 15:57:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1278,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 15:57:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1279,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 15:58:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1280,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 15:58:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1281,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:58:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1282,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:58:10');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1283,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:58:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1284,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 15:58:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1285,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','edit',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:58:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1286,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','close',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1287,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1288,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','edit',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:58:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1289,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','close',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1290,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1291,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','edit',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:58:41');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1292,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','close',2,'/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1293,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&controller=logs&view=logs&task=edit&id=2','','2013-05-21 15:58:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1294,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=subjects','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 15:59:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1295,0,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_cache','','2013-05-21 16:51:45');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1296,0,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_mediamanager','','2013-05-21 16:51:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1297,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_mediamanager','','2013-05-21 16:51:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1298,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager','','2013-05-21 16:51:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1299,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 16:51:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1300,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 16:51:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1301,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','close',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 16:56:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1302,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 16:56:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1303,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 16:56:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1304,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 16:58:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1305,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=objects','http://admanager.local/administrator/index.php?option=com_scout&view=subjects','','2013-05-21 16:59:56');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1306,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_scout&view=objects','','2013-05-21 16:59:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1307,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 17:01:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1308,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 17:01:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1309,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:02:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1310,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_scout','',NULL,'/administrator/index.php?option=com_scout&view=logs','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:02:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1311,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 17:02:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1312,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_scout&view=logs','','2013-05-21 17:02:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1313,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:02:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1314,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:03:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1315,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','cancel',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-21 17:03:10');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1316,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-21 17:03:10');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1317,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','edit',1,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:04:45');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1318,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','close',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=1','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-21 17:05:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1319,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=1','','2013-05-21 17:05:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1320,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:05:08');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1321,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:05:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1322,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 17:05:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1323,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:05:30');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1324,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:05:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1325,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:18:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1326,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:18:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1327,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:21:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1328,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:21:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1329,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 17:22:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1330,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 17:25:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1331,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:29:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1332,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 17:40:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1333,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:40:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1334,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:41:06');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1335,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:41:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1336,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 17:42:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1337,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','cancel',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 17:46:41');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1338,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 17:46:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1339,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 17:46:49');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1340,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 17:46:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1341,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 17:46:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1342,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 17:46:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1343,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 17:46:55');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1344,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=charging','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 17:46:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1345,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 17:46:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1346,84,'127.0.0.1','f8bfe13b7ac232ccac07ff7b1f3cbebe','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 18:01:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1347,0,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 18:24:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1348,0,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 18:24:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1349,84,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 18:24:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1350,84,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 18:24:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1351,84,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 18:24:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1352,84,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 18:24:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1353,84,'127.0.0.1','b14e1e9a2bc8d85d8b1f7d2a0137677b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 18:25:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1354,0,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_scout&view=scopes','','2013-05-21 19:57:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1355,0,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 19:57:38');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1356,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 19:57:38');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1357,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php','','2013-05-21 20:06:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1358,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php','','2013-05-21 20:06:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1359,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:06:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1360,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 20:06:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1361,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 20:06:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1362,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:13:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1363,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:13:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1364,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 20:13:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1365,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=mediaList&tmpl=component&folder=','http://admanager.local/administrator/index.php?option=com_media','','2013-05-21 20:13:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1366,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=mediaList&tmpl=component','http://admanager.local/administrator/index.php?option=com_media','','2013-05-21 20:13:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1367,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_content','',NULL,'/administrator/index.php?option=com_content','http://admanager.local/administrator/index.php?option=com_media','','2013-05-21 20:13:38');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1368,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=menus','http://admanager.local/administrator/index.php?option=com_content','','2013-05-21 20:13:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1369,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','http://admanager.local/administrator/index.php?option=com_menus&view=menus','','2013-05-21 20:13:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1370,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','add',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-21 20:13:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1371,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=items&menutype=mainmenu','','2013-05-21 20:13:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1372,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=menutypes&tmpl=component&recordId=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-21 20:13:48');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1373,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','setType',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-21 20:14:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1374,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','edit',NULL,'/administrator/index.php?option=com_menus&view=item&layout=edit','http://admanager.local/administrator/index.php?option=com_menus&view=item&menutype=mainmenu&layout=edit','','2013-05-21 20:14:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1375,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','cancel',0,'/administrator/index.php?option=com_menus&layout=edit&id=0','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-21 20:14:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1376,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_menus','',NULL,'/administrator/index.php?option=com_menus&view=items','http://admanager.local/administrator/index.php?option=com_menus&view=item&layout=edit','','2013-05-21 20:14:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1377,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_menus&view=items','','2013-05-21 20:16:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1378,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_menus&view=items','','2013-05-21 20:16:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1379,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:16:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1380,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:17:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1381,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:17:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1382,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:17:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1383,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:17:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1384,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:17:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1385,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:18:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1386,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:18:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1387,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:19:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1388,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:19:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1389,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:20:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1390,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:20:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1391,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','apply',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:20:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1392,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:20:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1393,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:22:19');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1394,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:22:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1395,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','apply',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:22:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1396,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:22:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1397,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:23:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1398,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:23:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1399,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:23:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1400,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','apply',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:23:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1401,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:23:39');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1402,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:26:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1403,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1404,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1405,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','apply',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1406,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',16,'/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1407,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','close',16,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=16','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1408,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files&task=edit&id=16','','2013-05-21 20:27:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1409,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:27:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1410,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=charging','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 20:27:49');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1411,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 20:27:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1412,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:27:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1413,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 20:27:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1414,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:27:53');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1415,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 20:27:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1416,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 20:28:10');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1417,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 20:28:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1418,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 20:28:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1419,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=files&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:28:19');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1420,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','cancel',0,'/administrator/index.php?option=com_mediamanager&controller=files&view=files&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=files&view=files','','2013-05-21 20:28:22');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1421,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=files&view=files','','2013-05-21 20:28:22');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1422,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 20:28:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1423,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:28:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1424,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementfile&tmpl=component&object=item_existing_new','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:28:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1425,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:28:45');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1426,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:29:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1427,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:29:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1428,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:30:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1429,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 20:30:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1430,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:30:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1431,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:30:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1432,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:30:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1433,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 20:30:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1434,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:32:08');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1435,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:34:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1436,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:35:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1437,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:35:13');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1438,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:35:22');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1439,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','close',4,'/administrator/index.php?option=com_mediamanager&controller=media&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:44:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1440,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 20:44:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1441,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:44:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1442,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:49:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1443,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:50:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1444,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 20:56:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1445,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:06:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1446,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:06:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1447,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:07:47');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1448,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:08:22');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1449,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:09:01');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1450,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:09:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1451,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:09:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1452,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','','2013-05-21 21:09:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1453,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata/parks&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','','2013-05-21 21:09:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1454,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:09:41');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1455,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:09:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1456,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:09:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1457,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:09:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1458,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:09:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1459,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','','2013-05-21 21:10:00');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1460,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata/parks&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','','2013-05-21 21:10:01');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1461,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:10:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1462,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:11:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1463,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:11:56');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1464,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:12:03');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1465,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=deletefile&delete_id=26','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:12:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1466,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:12:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1467,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:14:08');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1468,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:14:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1469,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:16:07');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1470,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:16:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1471,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:22:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1472,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:27:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1473,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:27:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1474,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:27:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1475,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','','2013-05-21 21:27:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1476,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata/parks&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=sampledata&asset=com_mediamanager&author=','','2013-05-21 21:27:41');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1477,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:27:49');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1478,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:30:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1479,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:30:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1480,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:30:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1481,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=banners&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','','2013-05-21 21:30:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1482,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:30:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1483,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:30:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1484,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:30:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1485,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:30:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1486,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:31:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1487,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:31:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1488,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:31:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1489,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:31:50');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1490,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:34:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1491,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:34:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1492,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:34:20');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1493,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:34:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1494,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:34:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1495,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:34:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1496,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 21:34:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1497,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:34:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1498,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=deletefile&delete_id=29','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:34:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1499,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:35:06');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1500,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:35:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1501,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:35:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1502,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:36:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1503,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:36:56');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1504,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:37:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1505,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:38:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1506,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:40:12');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1507,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementfile&tmpl=component&object=item_existing_new','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:40:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1508,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:40:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1509,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',4,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:40:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1510,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','close',4,'/administrator/index.php?option=com_mediamanager&controller=media&view=media&task=edit&id=4','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:47:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1511,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','','2013-05-21 21:47:36');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1512,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:47:38');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1513,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:49:02');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1514,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 21:49:04');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1515,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 21:49:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1516,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 21:49:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1517,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 21:49:29');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1518,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 21:49:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1519,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-21 21:58:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1520,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=stations&view=stations','','2013-05-21 21:58:33');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1521,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',2,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 21:58:35');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1522,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','close',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 21:58:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1523,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 21:58:40');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1524,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 21:58:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1525,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=media&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 21:58:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1526,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',NULL,'/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=media&view=media','','2013-05-21 21:58:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1527,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:02:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1528,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 22:02:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1529,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','upload',NULL,'/administrator/index.php?option=com_media&task=file.upload&tmpl=component&da3b8f1b51606c70db819cc0e67ff184=d6c3b1be286effa41a3c0d32179f157b&199c381172684c6e2222a4c8f48d7aa2=1&asset=com_mediamanager&author=&view=images&folder=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 22:03:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1530,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 22:03:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1531,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','','2013-05-21 22:03:11');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1532,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','upload',NULL,'/administrator/index.php?option=com_media&task=file.upload&tmpl=component&da3b8f1b51606c70db819cc0e67ff184=d6c3b1be286effa41a3c0d32179f157b&199c381172684c6e2222a4c8f48d7aa2=1&asset=com_mediamanager&author=&view=images&folder=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','','2013-05-21 22:03:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1533,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','','2013-05-21 22:03:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1534,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&fieldid=item_local_new&e_name=&asset=com_mediamanager&author=&folder=','','2013-05-21 22:03:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1535,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 22:03:51');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1536,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','add',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 22:03:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1537,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 22:03:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1538,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&controller=advertisers&view=advertisers','','2013-05-21 22:03:57');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1539,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:03:59');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1540,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:04:03');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1541,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 22:04:03');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1542,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','apply',0,'/administrator/index.php?option=com_mediamanager&controller=media&view=media&task=edit&id=0','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:04:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1543,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',5,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:04:14');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1544,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:04:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1545,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_media','',NULL,'/administrator/index.php?option=com_media&view=imagesList&tmpl=component&folder=&asset=com_mediamanager&author=','http://admanager.local/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_mediamanager&fieldid=item_local_new&folder=','','2013-05-21 22:04:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1546,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:04:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1547,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewFile','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:04:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1548,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=video_advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:04:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1549,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',5,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:05:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1550,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',5,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:05:43');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1551,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',5,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:06:37');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1552,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=elementadvertisers&tmpl=component&object=video_advertiser_id','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:21:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1553,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:21:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1554,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=deletefile&delete_id=33','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:23:30');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1555,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:23:34');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1556,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:24:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1557,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=deletefile&delete_id=35','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:29:52');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1558,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','doTaskAjax',NULL,'/administrator/index.php?option=com_mediamanager&task=doTaskAjax&format=raw&view=media&element=slideshow_kiosk&elementTask=addNewVideo','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:29:54');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1559,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',5,'/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','','2013-05-21 22:30:42');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1560,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',5,'/administrator/index.php?option=com_mediamanager&controller=media&view=media&task=edit&id=5','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:30:55');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1561,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','','2013-05-21 22:30:56');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1562,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:31:01');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1563,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',2,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:31:03');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1564,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:31:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1565,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:31:09');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1566,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 22:31:44');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1567,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','edit',2,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:31:46');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1568,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:31:55');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1569,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:31:55');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1570,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_config','',NULL,'/administrator/index.php?option=com_config','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:34:23');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1571,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_config','save',NULL,'/administrator/index.php?option=com_config','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:34:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1572,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:34:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1573,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_config','save',NULL,'/administrator/index.php?option=com_config','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:34:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1574,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:34:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1575,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php','','2013-05-21 22:35:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1576,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php','','2013-05-21 22:35:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1577,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','enable',0,'/administrator/index.php?option=com_mediamanager&controller=media&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:35:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1578,84,'127.0.0.1','d6c3b1be286effa41a3c0d32179f157b','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:35:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1579,0,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_cpanel','',NULL,'/administrator/index.php','','','2013-05-21 22:51:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1580,0,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_login','login',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 22:51:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1581,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php','','2013-05-21 22:51:18');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1582,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_config','',NULL,'/administrator/index.php?option=com_config','http://admanager.local/administrator/index.php','','2013-05-21 22:51:21');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1583,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_config','save',NULL,'/administrator/index.php?option=com_config','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:51:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1584,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_cpanel','',NULL,'/administrator/index.php','http://admanager.local/administrator/index.php?option=com_config','','2013-05-21 22:51:25');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1585,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_plugins','',NULL,'/administrator/index.php?option=com_plugins','http://admanager.local/administrator/index.php','','2013-05-21 22:53:58');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1586,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager','http://admanager.local/administrator/index.php?option=com_plugins','','2013-05-21 22:54:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1587,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_plugins','','2013-05-21 22:54:05');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1588,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:54:15');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1589,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 22:54:16');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1590,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:54:17');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1591,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=files','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:54:19');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1592,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=advertisers','http://admanager.local/administrator/index.php?option=com_mediamanager&view=files','','2013-05-21 22:54:27');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1593,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=charging','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 22:54:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1594,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=advertisers','','2013-05-21 22:54:28');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1595,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:54:30');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1596,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=dashboard','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:54:31');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1597,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=media','http://admanager.local/administrator/index.php?option=com_mediamanager&view=dashboard','','2013-05-21 22:56:19');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1598,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media','','2013-05-21 22:56:24');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1599,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','edit',2,'/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','','2013-05-21 22:56:26');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1600,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','save',0,'/administrator/index.php?option=com_mediamanager&controller=stations&view=stations&task=edit&id=2','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:56:32');
+INSERT INTO `lsf3y_rokadminaudit` VALUES (1601,84,'127.0.0.1','bff9dc686debd88eef58b98010668fe1','com_mediamanager','',NULL,'/administrator/index.php?option=com_mediamanager&view=stations','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations&task=edit&id=2','','2013-05-21 22:56:32');
 /*!40000 ALTER TABLE `lsf3y_rokadminaudit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2193,7 +2629,7 @@ CREATE TABLE `lsf3y_rokuserstats` (
   KEY `ip` (`ip`),
   KEY `session_id` (`session_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=209 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2250,6 +2686,99 @@ INSERT INTO `lsf3y_rokuserstats` VALUES (112,0,'69.27.7.162','f65f019570d300a5c2
 INSERT INTO `lsf3y_rokuserstats` VALUES (113,0,'69.27.7.162','abde29cfcd61b108c71f474d90a8843e','/?uuid=123412341234131','','2013-05-17 22:26:29');
 INSERT INTO `lsf3y_rokuserstats` VALUES (114,0,'69.27.7.162','eec76cd22578ddce86bd32fa3145fb77','/?uuid=123412341234131','http://webmail.crosscliq.com/src/read_body.php?mailbox=INBOX&passed_id=96&startMessage=1','2013-05-20 19:59:30');
 INSERT INTO `lsf3y_rokuserstats` VALUES (115,0,'69.27.7.162','eec76cd22578ddce86bd32fa3145fb77','/slogs','http://webmail.crosscliq.com/src/read_body.php?mailbox=INBOX&passed_id=95&startMessage=1','2013-05-20 19:59:55');
+INSERT INTO `lsf3y_rokuserstats` VALUES (116,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:34:21');
+INSERT INTO `lsf3y_rokuserstats` VALUES (117,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:34:33');
+INSERT INTO `lsf3y_rokuserstats` VALUES (118,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:35:07');
+INSERT INTO `lsf3y_rokuserstats` VALUES (119,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:35:08');
+INSERT INTO `lsf3y_rokuserstats` VALUES (120,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:35:09');
+INSERT INTO `lsf3y_rokuserstats` VALUES (121,0,'127.0.0.1','e9ec11adb6428aa8dba16fb45406b88b','/?uuid=123412341234131','','2013-05-21 15:36:17');
+INSERT INTO `lsf3y_rokuserstats` VALUES (122,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/?uuid=123412341234131','','2013-05-21 15:57:20');
+INSERT INTO `lsf3y_rokuserstats` VALUES (123,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/?uuid=123412341234131','','2013-05-21 16:00:22');
+INSERT INTO `lsf3y_rokuserstats` VALUES (124,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:15:19');
+INSERT INTO `lsf3y_rokuserstats` VALUES (125,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:15:44');
+INSERT INTO `lsf3y_rokuserstats` VALUES (126,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:16:00');
+INSERT INTO `lsf3y_rokuserstats` VALUES (127,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:16:39');
+INSERT INTO `lsf3y_rokuserstats` VALUES (128,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:17:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (129,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:18:11');
+INSERT INTO `lsf3y_rokuserstats` VALUES (130,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:18:53');
+INSERT INTO `lsf3y_rokuserstats` VALUES (131,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:20:33');
+INSERT INTO `lsf3y_rokuserstats` VALUES (132,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:20:55');
+INSERT INTO `lsf3y_rokuserstats` VALUES (133,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:21:42');
+INSERT INTO `lsf3y_rokuserstats` VALUES (134,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:35:14');
+INSERT INTO `lsf3y_rokuserstats` VALUES (135,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:35:45');
+INSERT INTO `lsf3y_rokuserstats` VALUES (136,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:36:09');
+INSERT INTO `lsf3y_rokuserstats` VALUES (137,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:36:27');
+INSERT INTO `lsf3y_rokuserstats` VALUES (138,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:37:16');
+INSERT INTO `lsf3y_rokuserstats` VALUES (139,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:41:42');
+INSERT INTO `lsf3y_rokuserstats` VALUES (140,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/slogs','','2013-05-21 16:45:44');
+INSERT INTO `lsf3y_rokuserstats` VALUES (141,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:28:27');
+INSERT INTO `lsf3y_rokuserstats` VALUES (142,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:29:35');
+INSERT INTO `lsf3y_rokuserstats` VALUES (143,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:30:19');
+INSERT INTO `lsf3y_rokuserstats` VALUES (144,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:32:08');
+INSERT INTO `lsf3y_rokuserstats` VALUES (145,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:34:51');
+INSERT INTO `lsf3y_rokuserstats` VALUES (146,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:35:03');
+INSERT INTO `lsf3y_rokuserstats` VALUES (147,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:35:13');
+INSERT INTO `lsf3y_rokuserstats` VALUES (148,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:35:22');
+INSERT INTO `lsf3y_rokuserstats` VALUES (149,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:45:00');
+INSERT INTO `lsf3y_rokuserstats` VALUES (150,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:49:20');
+INSERT INTO `lsf3y_rokuserstats` VALUES (151,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:50:29');
+INSERT INTO `lsf3y_rokuserstats` VALUES (152,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 20:56:36');
+INSERT INTO `lsf3y_rokuserstats` VALUES (153,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:06:12');
+INSERT INTO `lsf3y_rokuserstats` VALUES (154,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:06:28');
+INSERT INTO `lsf3y_rokuserstats` VALUES (155,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:07:47');
+INSERT INTO `lsf3y_rokuserstats` VALUES (156,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:08:22');
+INSERT INTO `lsf3y_rokuserstats` VALUES (157,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:09:01');
+INSERT INTO `lsf3y_rokuserstats` VALUES (158,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:09:43');
+INSERT INTO `lsf3y_rokuserstats` VALUES (159,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:09:57');
+INSERT INTO `lsf3y_rokuserstats` VALUES (160,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:12:04');
+INSERT INTO `lsf3y_rokuserstats` VALUES (161,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:12:12');
+INSERT INTO `lsf3y_rokuserstats` VALUES (162,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:14:08');
+INSERT INTO `lsf3y_rokuserstats` VALUES (163,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:16:10');
+INSERT INTO `lsf3y_rokuserstats` VALUES (164,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:22:18');
+INSERT INTO `lsf3y_rokuserstats` VALUES (165,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:27:34');
+INSERT INTO `lsf3y_rokuserstats` VALUES (166,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:30:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (167,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:30:45');
+INSERT INTO `lsf3y_rokuserstats` VALUES (168,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:34:17');
+INSERT INTO `lsf3y_rokuserstats` VALUES (169,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:34:43');
+INSERT INTO `lsf3y_rokuserstats` VALUES (170,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:35:35');
+INSERT INTO `lsf3y_rokuserstats` VALUES (171,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:36:45');
+INSERT INTO `lsf3y_rokuserstats` VALUES (172,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:36:57');
+INSERT INTO `lsf3y_rokuserstats` VALUES (173,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:37:24');
+INSERT INTO `lsf3y_rokuserstats` VALUES (174,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:38:27');
+INSERT INTO `lsf3y_rokuserstats` VALUES (175,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:40:12');
+INSERT INTO `lsf3y_rokuserstats` VALUES (176,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=4','2013-05-21 21:40:32');
+INSERT INTO `lsf3y_rokuserstats` VALUES (177,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=add&handler=slideshow_kiosk','2013-05-21 21:58:47');
+INSERT INTO `lsf3y_rokuserstats` VALUES (178,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:04:14');
+INSERT INTO `lsf3y_rokuserstats` VALUES (179,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:05:43');
+INSERT INTO `lsf3y_rokuserstats` VALUES (180,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:05:44');
+INSERT INTO `lsf3y_rokuserstats` VALUES (181,0,'127.0.0.1','7876fbf355a20dd736711c2a68fe2598','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:06:38');
+INSERT INTO `lsf3y_rokuserstats` VALUES (182,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:24:26');
+INSERT INTO `lsf3y_rokuserstats` VALUES (183,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=media&task=edit&id=5','2013-05-21 22:30:43');
+INSERT INTO `lsf3y_rokuserstats` VALUES (184,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 22:31:20');
+INSERT INTO `lsf3y_rokuserstats` VALUES (185,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:32:02');
+INSERT INTO `lsf3y_rokuserstats` VALUES (186,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:33:23');
+INSERT INTO `lsf3y_rokuserstats` VALUES (187,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:33:59');
+INSERT INTO `lsf3y_rokuserstats` VALUES (188,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:34:13');
+INSERT INTO `lsf3y_rokuserstats` VALUES (189,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:34:34');
+INSERT INTO `lsf3y_rokuserstats` VALUES (190,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:35:00');
+INSERT INTO `lsf3y_rokuserstats` VALUES (191,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:35:01');
+INSERT INTO `lsf3y_rokuserstats` VALUES (192,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:35:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (193,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:36:10');
+INSERT INTO `lsf3y_rokuserstats` VALUES (194,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:36:21');
+INSERT INTO `lsf3y_rokuserstats` VALUES (195,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:36:30');
+INSERT INTO `lsf3y_rokuserstats` VALUES (196,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:37:20');
+INSERT INTO `lsf3y_rokuserstats` VALUES (197,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:38:09');
+INSERT INTO `lsf3y_rokuserstats` VALUES (198,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:38:25');
+INSERT INTO `lsf3y_rokuserstats` VALUES (199,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:40:59');
+INSERT INTO `lsf3y_rokuserstats` VALUES (200,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:43:39');
+INSERT INTO `lsf3y_rokuserstats` VALUES (201,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:44:28');
+INSERT INTO `lsf3y_rokuserstats` VALUES (202,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=1234','','2013-05-21 22:44:45');
+INSERT INTO `lsf3y_rokuserstats` VALUES (203,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/','http://admanager.local/administrator/index.php?option=com_mediamanager&view=stations','2013-05-21 22:56:34');
+INSERT INTO `lsf3y_rokuserstats` VALUES (204,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 22:56:40');
+INSERT INTO `lsf3y_rokuserstats` VALUES (205,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 22:56:46');
+INSERT INTO `lsf3y_rokuserstats` VALUES (206,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 23:04:06');
+INSERT INTO `lsf3y_rokuserstats` VALUES (207,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 23:04:31');
+INSERT INTO `lsf3y_rokuserstats` VALUES (208,0,'127.0.0.1','33abd70b3fa4513d95575757bbb89c45','/?uuid=f0:ae:51:00:04:ef','','2013-05-21 23:04:50');
 /*!40000 ALTER TABLE `lsf3y_rokuserstats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2317,7 +2846,7 @@ CREATE TABLE `lsf3y_scout_logs` (
   PRIMARY KEY (`log_id`),
   KEY `subject_id` (`subject_id`),
   KEY `object_id` (`object_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2326,6 +2855,27 @@ CREATE TABLE `lsf3y_scout_logs` (
 
 LOCK TABLES `lsf3y_scout_logs` WRITE;
 /*!40000 ALTER TABLE `lsf3y_scout_logs` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_logs` VALUES (1,'2013-05-21 15:15:53',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (2,'2013-05-21 15:36:17',2,2,2);
+INSERT INTO `lsf3y_scout_logs` VALUES (3,'2013-05-21 15:57:20',2,2,2);
+INSERT INTO `lsf3y_scout_logs` VALUES (4,'2013-05-21 15:57:48',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (5,'2013-05-21 16:51:47',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (6,'2013-05-21 18:24:25',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (7,'2013-05-21 19:57:38',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (8,'2013-05-21 22:35:30',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (9,'2013-05-21 22:36:10',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (10,'2013-05-21 22:36:21',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (11,'2013-05-21 22:36:30',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (12,'2013-05-21 22:37:20',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (13,'2013-05-21 22:38:09',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (14,'2013-05-21 22:38:25',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (15,'2013-05-21 22:40:59',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (16,'2013-05-21 22:43:39',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (17,'2013-05-21 22:44:29',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (18,'2013-05-21 22:44:45',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (19,'2013-05-21 22:51:18',1,1,1);
+INSERT INTO `lsf3y_scout_logs` VALUES (20,'2013-05-21 23:04:31',3,2,3);
+INSERT INTO `lsf3y_scout_logs` VALUES (21,'2013-05-21 23:04:50',3,2,3);
 /*!40000 ALTER TABLE `lsf3y_scout_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2342,7 +2892,7 @@ CREATE TABLE `lsf3y_scout_objects` (
   `scope_id` int(11) NOT NULL,
   `object_value` text NOT NULL,
   PRIMARY KEY (`object_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2351,6 +2901,9 @@ CREATE TABLE `lsf3y_scout_objects` (
 
 LOCK TABLES `lsf3y_scout_objects` WRITE;
 /*!40000 ALTER TABLE `lsf3y_scout_objects` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_objects` VALUES (1,'Super User',2,'84');
+INSERT INTO `lsf3y_scout_objects` VALUES (2,'Testing Kiosk',1,'4');
+INSERT INTO `lsf3y_scout_objects` VALUES (3,'In House Testing Show',1,'5');
 /*!40000 ALTER TABLE `lsf3y_scout_objects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2369,7 +2922,7 @@ CREATE TABLE `lsf3y_scout_scopes` (
   `scope_url` text NOT NULL,
   PRIMARY KEY (`scope_id`),
   KEY `scope_identifier` (`scope_identifier`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2379,6 +2932,9 @@ CREATE TABLE `lsf3y_scout_scopes` (
 LOCK TABLES `lsf3y_scout_scopes` WRITE;
 /*!40000 ALTER TABLE `lsf3y_scout_scopes` DISABLE KEYS */;
 INSERT INTO `lsf3y_scout_scopes` VALUES (1,0,'Media Station','com_mediamanager.station','index.php?option=com_mediamanager&view=station');
+INSERT INTO `lsf3y_scout_scopes` VALUES (2,1,'User Manager','com_user&view=user','index.php?option=com_users&view=user&task=edit&cid[]=');
+INSERT INTO `lsf3y_scout_scopes` VALUES (3,0,'File Displayed','com_mediamanager.file','index.php?option=com_mediamanager&view=files&task=edit&id=');
+INSERT INTO `lsf3y_scout_scopes` VALUES (4,1,'The Core Content Manager','com_content&view=article','index.php?option=com_content&view=article&task=edit&cid[]=');
 /*!40000 ALTER TABLE `lsf3y_scout_scopes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2395,7 +2951,7 @@ CREATE TABLE `lsf3y_scout_subjects` (
   `subjecttype_id` int(11) NOT NULL,
   `subject_value` text NOT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2404,6 +2960,9 @@ CREATE TABLE `lsf3y_scout_subjects` (
 
 LOCK TABLES `lsf3y_scout_subjects` WRITE;
 /*!40000 ALTER TABLE `lsf3y_scout_subjects` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_subjects` VALUES (1,'Super User',1,'84');
+INSERT INTO `lsf3y_scout_subjects` VALUES (2,'Testing Kiosk',4,'4');
+INSERT INTO `lsf3y_scout_subjects` VALUES (3,'In House Testing Show',4,'5');
 /*!40000 ALTER TABLE `lsf3y_scout_subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2421,7 +2980,7 @@ CREATE TABLE `lsf3y_scout_subjecttypes` (
   `site_url` text NOT NULL,
   `admin_url` text NOT NULL,
   PRIMARY KEY (`subjecttype_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Index of subject types, such as user, plugin, cronjob, etc';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Index of subject types, such as user, plugin, cronjob, etc';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2433,6 +2992,7 @@ LOCK TABLES `lsf3y_scout_subjecttypes` WRITE;
 INSERT INTO `lsf3y_scout_subjecttypes` VALUES (1,'A User','user','','index.php?option=com_users&view=user&task=edit&cid[]=');
 INSERT INTO `lsf3y_scout_subjecttypes` VALUES (2,'A Plugin','plugin','','');
 INSERT INTO `lsf3y_scout_subjecttypes` VALUES (3,'A CronJob','cronjob','','');
+INSERT INTO `lsf3y_scout_subjecttypes` VALUES (4,'media','media','','');
 /*!40000 ALTER TABLE `lsf3y_scout_subjecttypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2448,7 +3008,7 @@ CREATE TABLE `lsf3y_scout_verbs` (
   `verb_name` varchar(255) NOT NULL,
   `verb_value` text NOT NULL,
   PRIMARY KEY (`verb_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2457,6 +3017,9 @@ CREATE TABLE `lsf3y_scout_verbs` (
 
 LOCK TABLES `lsf3y_scout_verbs` WRITE;
 /*!40000 ALTER TABLE `lsf3y_scout_verbs` DISABLE KEYS */;
+INSERT INTO `lsf3y_scout_verbs` VALUES (1,'Logged In','login');
+INSERT INTO `lsf3y_scout_verbs` VALUES (2,'Displayed','displayed');
+INSERT INTO `lsf3y_scout_verbs` VALUES (3,'Created','created');
 /*!40000 ALTER TABLE `lsf3y_scout_verbs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2489,7 +3052,8 @@ CREATE TABLE `lsf3y_session` (
 
 LOCK TABLES `lsf3y_session` WRITE;
 /*!40000 ALTER TABLE `lsf3y_session` DISABLE KEYS */;
-INSERT INTO `lsf3y_session` VALUES ('4ea66a6b684e428d3eecf9bda7eb88c1',1,0,'1369148653','__default|a:8:{s:15:\"session.counter\";i:26;s:19:\"session.timer.start\";i:1369148177;s:18:\"session.timer.last\";i:1369148653;s:17:\"session.timer.now\";i:1369148653;s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":4:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}s:13:\"com_installer\";O:8:\"stdClass\":3:{s:7:\"message\";s:0:\"\";s:17:\"extension_message\";s:0:\"\";s:12:\"redirect_url\";N;}s:6:\"global\";O:8:\"stdClass\":1:{s:4:\"list\";O:8:\"stdClass\":1:{s:5:\"limit\";s:2:\"20\";}}s:18:\"administrator::com\";O:8:\"stdClass\":1:{s:9:\"com_scout\";O:8:\"stdClass\":1:{s:5:\"model\";O:8:\"stdClass\":8:{s:16:\"scopeslimitstart\";i:0;s:6:\"scopes\";O:8:\"stdClass\":3:{s:12:\"filter_order\";s:12:\"tbl.scope_id\";s:16:\"filter_direction\";s:3:\"ASC\";s:6:\"filter\";s:0:\"\";}s:20:\"scopesfilter_id_from\";s:0:\"\";s:18:\"scopesfilter_id_to\";s:0:\"\";s:17:\"scopesfilter_name\";s:0:\"\";s:12:\"scopesclient\";s:0:\"\";s:16:\"scopesidentifier\";s:0:\"\";s:9:\"scopesurl\";s:0:\"\";}}}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-16 22:10:34\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";N;}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"8002cf68f0ab496c872e404e6cc8bc1a\";}',84,'chris','');
+INSERT INTO `lsf3y_session` VALUES ('33abd70b3fa4513d95575757bbb89c45',0,1,'1369177490','__default|a:8:{s:22:\"session.client.browser\";s:135:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31 FirePHP/4Chrome\";s:15:\"session.counter\";i:27;s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";N;s:2:\"id\";i:0;s:4:\"name\";N;s:8:\"username\";N;s:5:\"email\";N;s:8:\"password\";N;s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";N;s:5:\"block\";N;s:9:\"sendEmail\";i:0;s:12:\"registerDate\";N;s:13:\"lastvisitDate\";N;s:10:\"activation\";N;s:6:\"params\";N;s:6:\"groups\";a:0:{}s:5:\"guest\";i:1;s:13:\"lastResetTime\";N;s:10:\"resetCount\";N;s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":0:{}}s:14:\"\0*\0_authGroups\";N;s:14:\"\0*\0_authLevels\";a:2:{i:0;i:1;i:1;i:1;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:19:\"session.timer.start\";i:1369175443;s:18:\"session.timer.last\";i:1369177471;s:17:\"session.timer.now\";i:1369177490;s:13:\"session.token\";s:32:\"5163ac8fe3cfe48c6cb88818676b59e1\";}',0,'','');
+INSERT INTO `lsf3y_session` VALUES ('bff9dc686debd88eef58b98010668fe1',1,0,'1369176992','__default|a:8:{s:22:\"session.client.browser\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31\";s:15:\"session.counter\";i:23;s:8:\"registry\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":1:{s:11:\"application\";O:8:\"stdClass\":1:{s:4:\"lang\";s:5:\"en-GB\";}}}s:4:\"user\";O:5:\"JUser\":25:{s:9:\"\0*\0isRoot\";b:1;s:2:\"id\";s:2:\"84\";s:4:\"name\";s:10:\"Super User\";s:8:\"username\";s:5:\"chris\";s:5:\"email\";s:26:\"chris@ammonitenetworks.com\";s:8:\"password\";s:65:\"7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5\";s:14:\"password_clear\";s:0:\"\";s:8:\"usertype\";s:10:\"deprecated\";s:5:\"block\";s:1:\"0\";s:9:\"sendEmail\";s:1:\"1\";s:12:\"registerDate\";s:19:\"2013-05-14 16:06:38\";s:13:\"lastvisitDate\";s:19:\"2013-05-21 19:57:38\";s:10:\"activation\";s:1:\"0\";s:6:\"params\";s:0:\"\";s:6:\"groups\";a:1:{i:8;s:1:\"8\";}s:5:\"guest\";i:0;s:13:\"lastResetTime\";s:19:\"0000-00-00 00:00:00\";s:10:\"resetCount\";s:1:\"0\";s:10:\"\0*\0_params\";O:9:\"JRegistry\":1:{s:7:\"\0*\0data\";O:8:\"stdClass\":2:{s:16:\"mc_default_style\";N;s:11:\"admin_style\";s:1:\"8\";}}s:14:\"\0*\0_authGroups\";a:2:{i:0;i:1;i:1;i:8;}s:14:\"\0*\0_authLevels\";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:\"\0*\0_authActions\";N;s:12:\"\0*\0_errorMsg\";N;s:10:\"\0*\0_errors\";a:0:{}s:3:\"aid\";i:0;}s:13:\"session.token\";s:32:\"7d496d9cfcf2dd9e17f039afd689e715\";s:19:\"session.timer.start\";i:1369176678;s:18:\"session.timer.last\";i:1369176992;s:17:\"session.timer.now\";i:1369176992;}',84,'chris','');
 /*!40000 ALTER TABLE `lsf3y_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2877,7 +3441,7 @@ CREATE TABLE `lsf3y_users` (
 
 LOCK TABLES `lsf3y_users` WRITE;
 /*!40000 ALTER TABLE `lsf3y_users` DISABLE KEYS */;
-INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-21 14:56:24','0','','0000-00-00 00:00:00',0);
+INSERT INTO `lsf3y_users` VALUES (84,'Super User','chris','chris@ammonitenetworks.com','7b440c11c07cee81dacc8bfcf88e6918:8znPOh41BaDayowRZ46vwabgdW8leSZ5','deprecated',0,1,'2013-05-14 16:06:38','2013-05-21 22:51:18','0','','0000-00-00 00:00:00',0);
 INSERT INTO `lsf3y_users` VALUES (85,'Advertising Manager','ads','chris@crosscliq.com','b3593d33aa5feadb49c3db99096d1413:3G3mW4OLU1ViEk2ceahR3ag4T2SxHuk1','',0,0,'2013-05-16 16:39:55','2013-05-16 18:00:56','','{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `lsf3y_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2920,4 +3484,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-21 15:04:36
+-- Dump completed on 2013-05-21 17:05:33

@@ -93,8 +93,8 @@ class MediaManagerModelStation extends MediaManagerModelBase
 	{
 		if (empty($this->_uuid))
 		{
-			$this->_uuid = JRequest::getVar( 'uuid', JRequest::getVar( 'uuid', '0', 'post', 'int' ), 'get', 'int' );
-
+			$this->_uuid = JRequest::getVar( 'uuid', JRequest::getVar( 'uuid', '0', 'post', 'string' ), 'get', 'string' );
+			$this->_uuid = str_replace(':', '', $this->_uuid);
 		}
 
 		return $this->_uuid;
@@ -137,8 +137,8 @@ class MediaManagerModelStation extends MediaManagerModelBase
 
     			$keyname = 'uuid';
     			$value	= $this->_db->Quote( $cache_key );
-    			$query->where( "tbl.$keyname = $value" );
-    			
+    			$query->where( "REPLACE(tbl.$keyname, ':', '') = $value" );
+   
     			$this->_db->setQuery( (string) $query );
     			
     			$item = $this->_db->loadObject();

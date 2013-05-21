@@ -18,7 +18,9 @@ if ( !class_exists('Scout') )
 Scout::load('ScoutModelBase','models.base');
 
 class ScoutModelLogs extends ScoutModelBase 
-{
+{   
+    public $cache_enabled = false;
+    
     protected function _buildQueryWhere(&$query)
     {
        	$filter             = $this->getState('filter');
