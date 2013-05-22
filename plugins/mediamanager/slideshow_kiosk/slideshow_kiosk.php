@@ -99,7 +99,10 @@ class plgMediaManagerSlideshow_Kiosk extends MediaManagerPluginBase
 		$vars->db_files = $db_files;
 		$vars->db_files_count = count( $db_files );
 		
-		$html = $this->_getLayout( 'view', $vars );
+        $layout = JRequest::getVar('format', 'view');
+
+
+		$html = $this->_getLayout( $layout, $vars );
 		
 		return $html;
 	}

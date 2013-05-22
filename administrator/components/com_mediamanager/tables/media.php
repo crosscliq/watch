@@ -165,11 +165,14 @@ class MediamanagerTableMedia extends DSCTable
     {
         $db = $this->getDBO();
         $nullDate = $db->getNullDate( );
+        $date = JFactory::getDate( );
     	if (empty($this->date_added) || $this->date_added == '0000-00-00' || $this->date_added == $nullDate )
 		{
-		    $date = JFactory::getDate( );
+		    
 			$this->date_added = $date->toMySQL();
 		}
+
+        $this->datemodified = $date->toSql( );
 		
 		return true;
     }

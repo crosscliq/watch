@@ -113,7 +113,7 @@ class MediaManagerControllerStation extends MediaManagerController
         
         $library_category_types = array();
         $hstate = $helpermedia->getState();
-		if (!empty($hstate['library_id']))
+		/*if (!empty($hstate['library_id']))
 		{
 		    $library = $this->getModel('libraries')->getTable();
 		    $library->load( $hstate['library_id'] );
@@ -123,16 +123,16 @@ class MediaManagerControllerStation extends MediaManagerController
     		$lctmodel->setState( 'filter_library', $library->library_id );
             $lctitems = $lctmodel->getList();
             $library_category_types = $helper->getColumn( $lctitems, 'categorytype_id' );
-		}
-        $view->assign('library_category_types', $library_category_types);
+		}*/
+        //$view->assign('library_category_types', $library_category_types);
         
-        $document = JFactory::getDocument();
-        $page_title = $station->media->media_title;
-        $page_title .= " | " . ucwords($station->media->media_group);
-        $document->setTitle( strip_tags( htmlspecialchars_decode( $page_title ) ) );
-        $document->setDescription( strip_tags( htmlspecialchars_decode( $station->media->media_description ) ) );
+        //$document = JFactory::getDocument();
+        //$page_title = $station->media->media_title;
+        //$page_title .= " | " . ucwords($station->media->media_group);
+        //$document->setTitle( strip_tags( htmlspecialchars_decode( $page_title ) ) );
+        //$document->setDescription( strip_tags( htmlspecialchars_decode( $station->media->media_description ) ) );
         
-        $document->addCustomTag( "<meta property='og:image' content='" . JURI::root() . $station->media->media_image . "' />" );
+       // $document->addCustomTag( "<meta property='og:image' content='" . JURI::root() . $station->media->media_image . "' />" );
         
         // TODO Add support for this, but we need a helper function.  See https://developers.facebook.com/docs/opengraph/complextypes/
         //$document->addCustomTag( "<meta property='og:type' content='$station->media->media_group' />" );
@@ -141,7 +141,7 @@ class MediaManagerControllerStation extends MediaManagerController
         
         JRequest::setVar( 'layout', 'view' );
       
-    
+        //$view->display();
         parent::display($cachable, $urlparams);
 	}
 	
@@ -185,6 +185,82 @@ if (move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile)) {
 
 
         die();
+    }
+
+    function displaylog() {
+        
+
+        $mediafileid = JRequest::getVar('mfid', null, 'request', 'int');
+       // $uuid = JRequest::getVar('uuid', null, 'request', 'string');
+        $datetime = JRequest::getVar('dt', null, 'request', 'string');
+        
+        $model =  MediaManager::getClass('MediaManagerModelStation','models.station',  $options=array( 'site'=>'site', 'type'=>'components', 'ext'=>'com_mediamanager' )); 
+        $uuid = $model->getUUID();
+        $station = $model->getItembyUUID( $uuid );
+        
+
+        $model =  MediaManager::getClass('MediaManagerModelMediafiles','models.mediafiles'); 
+        $media_item = $model->getItem($mediafileid);
+
+        JTable::addIncludePath( JPATH_ADMINISTRATOR.'/components/com_scout/tables' );
+        $log = JTable::getInstance( 'Logs', 'ScoutTable' );
+
+        // set the subject
+        $log->setSubject(
+            array(
+                'value'=>$station->station_id,   // required. the subject's unique identifier, generally a user id # 
+                'name'=>$station->station_name,  // required. the subject's name, generally a user's name or username.
+                'type'=>'station'                      // optional. 'user' is the default
+            )
+        ); 
+
+        // set the verb's variables
+        $verbValue = 'displayed';
+        $verbName = 'Displayed';
+        // set the verb
+        $log->setVerb(
+            array(
+                'value'=>$verbValue,    // required. unique identifier for this action
+                'name'=>$verbName       // optional. if this is a new verb, this is the plain English name for it
+            )
+        );
+
+
+         // set the object's variables
+        $app = JFactory::getApplication();
+        $client_id = $app->isAdmin() ? '1' : '0';
+        switch($client_id)
+        {
+            case "1":
+                $scope_url = 'index.php?option=com_mediamanager&view=mediafile&task=edit&cid[]=';
+                break;
+            case "0":
+            default:
+                $scope_url = 'index.php?option=com_mediamanager&view=mediafile&task=edit&cid[]=';
+                break;
+        }
+
+
+        // set the object
+        $log->setObject(
+            array(
+                'value'=>$media_item->mediafile_id,                          // required. the object's unique identifier. (in the case of content article, is the article id #)
+                'name'=>$media_item->file_name,                        // required. the object's plain english name. 
+                'scope_identifier'=>'com_mediamanager.mediafile', // required. is unique to this site+component+view(+layout) combo
+                'scope_name'=>'Media File',       // optional. only necessary if this scope is a new one
+                'scope_url'=>$scope_url,                        // optional. only necessary if this is a new scope, and this url is unique to this site+component+view(+layout) combo
+                'client_id'=>$client_id                         // optional. if missing, log object sets it.
+            )
+        );   
+
+         if (!$log->save())
+        {
+            JError::raiseNotice( 'plgMediaManagerScout', "plgMediaManagerScout :: ". $log->getError() );
+        }
+
+
+       
+
     }
 
 

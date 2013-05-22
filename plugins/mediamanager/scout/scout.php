@@ -24,10 +24,17 @@ class plgMediaManagerScout extends JPlugin
     function onDisplayMediaItem( $plugin, $media_item ) {
 
         $element = JRequest::getVar( 'uuid', '', 'request', 'string' );
-      
-     //     JTable::addIncludePath( JPATH_ADMINISTRATOR.'/components/com_mediamanager/tables' );
-     //   $station = JTable::getInstance( 'Stations', 'MediamanagerTable' );
-     //    $station->load('uuid' => $element);
+        
+
+
+    if ( !class_exists('Mediamanager') ) {
+             JLoader::register( "Mediamanager", JPATH_ADMINISTRATOR."/components/com_mediamanager/defines.php" );
+
+    }
+           $model =  MediaManager::getClass('MediaManagerModelStation','models.station',  $options=array( 'site'=>'site', 'type'=>'components', 'ext'=>'com_mediamanager' )); 
+           $uuid = $model->getUUID();
+           $station = $model->getItembyUUID( $uuid );
+    
 
          JTable::addIncludePath( JPATH_ADMINISTRATOR.'/components/com_scout/tables' );
         $log = JTable::getInstance( 'Logs', 'ScoutTable' );
@@ -37,9 +44,9 @@ class plgMediaManagerScout extends JPlugin
         // set the subject
         $log->setSubject(
             array(
-                'value'=>$media_item->media_id,   // required. the subject's unique identifier, generally a user id # 
-                'name'=>$media_item->media_title,  // required. the subject's name, generally a user's name or username.
-                'type'=>'media'                      // optional. 'user' is the default
+                'value'=>$station->station_id,   // required. the subject's unique identifier, generally a user id # 
+                'name'=>$station->station_name,  // required. the subject's name, generally a user's name or username.
+                'type'=>'station'                      // optional. 'user' is the default
             )
         ); 
 
