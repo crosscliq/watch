@@ -22,7 +22,7 @@ $params = $vars->row->params;
                                 case 'mp4': ?>
 
                        <li data-type="vid" data-id="<?php echo $item->mediafile_id; ?>">         
-                       <video controls autobuffer>         
+                       <video autobuffer>         
                                   <?php   
                     $string = unserialize($item->file_params);
                     foreach ($string as $skey => $value) : ?>
