@@ -1,0 +1,1 @@
+<?php die("Access Denied"); ?>#x#a:1:{s:13:"#__scout_logs";a:5:{s:6:"log_id";s:3:"int";s:8:"datetime";s:8:"datetime";s:10:"subject_id";s:3:"int";s:7:"verb_id";s:3:"int";s:9:"object_id";s:3:"int";}}

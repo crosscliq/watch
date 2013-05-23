@@ -21,7 +21,13 @@
                     <?php echo JText::_( 'Media Playlist' ); ?>:
                 </td>
                 <td>
-                    <input name="media_id" value="<?php echo @$row->media_id; ?>" size="72" maxlength="250" type="text" style="font-size: 20px;" />
+                    <?php   
+                JModel::addIncludePath( JPATH_ADMINISTRATOR . '/components/com_mediamanager/models' );
+                $model = JModel::getInstance( 'ElementMedia', 'MediaManagerModel' );
+                echo $model->fetchElement( 'media_id', @$row->media_id );
+                echo $model->clearElement( 'media_id', 0 );
+                ?>
+                   
                 </td>
             </tr>
 
