@@ -1,1 +1,0 @@
-<?php die("Access Denied"); ?>#x#a:1:{s:16:"#__scout_objects";a:4:{s:9:"object_id";s:3:"int";s:11:"object_name";s:7:"varchar";s:8:"scope_id";s:3:"int";s:12:"object_value";s:4:"text";}}
