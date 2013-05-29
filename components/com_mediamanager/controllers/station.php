@@ -191,7 +191,7 @@ if (move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile)) {
         
 
         $mediafileid = JRequest::getVar('mfid', null, 'request', 'int');
-       // $uuid = JRequest::getVar('uuid', null, 'request', 'string');
+
         $datetime = JRequest::getVar('dt', null, 'request', 'string');
         
         $model =  MediaManager::getClass('MediaManagerModelStation','models.station',  $options=array( 'site'=>'site', 'type'=>'components', 'ext'=>'com_mediamanager' )); 
@@ -254,11 +254,19 @@ if (move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile)) {
         );   
 
          if (!$log->save())
-        {
-            JError::raiseNotice( 'plgMediaManagerScout', "plgMediaManagerScout :: ". $log->getError() );
+        {   
+
+            $msg = array();
+            $msg['response'] = 'false';
+            $msg['msg'] = $log->getError();
+        } else {
+            $msg = array();
+            $msg['response'] = 'true';
+            $msg['msg'] = 'display logged';
+
         }
 
-
+        echo json_encode($msg);
        
 
     }
