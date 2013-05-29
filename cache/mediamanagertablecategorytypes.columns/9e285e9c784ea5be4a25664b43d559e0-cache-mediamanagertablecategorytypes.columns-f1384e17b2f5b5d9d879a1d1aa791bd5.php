@@ -1,1 +1,0 @@
-<?php die("Access Denied"); ?>#x#a:1:{s:29:"#__mediamanager_categorytypes";a:5:{s:15:"categorytype_id";s:3:"int";s:18:"categorytype_title";s:7:"varchar";s:26:"categorytype_display_admin";s:7:"tinyint";s:25:"categorytype_display_site";s:7:"tinyint";s:8:"ordering";s:3:"int";}}
