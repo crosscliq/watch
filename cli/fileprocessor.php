@@ -29,16 +29,10 @@ $array = explode('-', $filename);
 $macAddress = $array[0];
 
 
-
 // lets find the station we are taking in the database;
-
 $stmt = $conn->prepare('SELECT * FROM lsf3y_mediamanager_stations WHERE uuid = :mac limit 1');
 $stmt->execute(array('mac' => $macAddress));
 $station = $stmt->fetch();
-
-
-
-
 
 
 //TODO get the timezone from the database of where the station is location via mac address

@@ -31,7 +31,8 @@ class MediaManagerControllerStation extends MediaManagerController
 
 	    // load the media item
         $model = $this->getModel( 'station' );
-        $uuid = 'f0:ae:51:00:04:ef'
+        $uuid = 'f0:ae:51:00:04:ef';
+        $uuid = str_replace(':', '', $uuid);
         //$uuid = $model->getUUID();
   
         $station = $model->getItembyUUID( $uuid );
@@ -269,6 +270,104 @@ if (move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile)) {
 
         echo json_encode($msg);
        
+
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see DSCController::view()
+     */
+    function form()
+    {
+
+        DSCAcl::validateUser();
+
+        $model = $this->getModel( 'station' );
+        $uuid = $model->getUUID();
+        $station = $model->getItembyUUID();
+    
+        $view   = $this->getView( $this->get('suffix'), 'html' );
+        $view->setModel( $model, true );
+        $view->assign( 'row', $station );
+        $view->assign( 'uuid',  $uuid );
+        if(@$uuid) {
+             $view->setLayout( 'form' );
+        } else {
+             $view->setLayout( 'macaddress' );
+        }
+        
+        $view->setTask(true);
+        
+        $view->display();
+        //$this->footer();
+        return $this;     
+
+
+    }
+
+    function save() {
+            
+        $model = $this->getModel( $this->get('suffix') );
+        $row = $model->getTable();
+        $row->load( $model->getId() );
+        $post = JRequest::get('post', '4');
+        $row->bind( $post );
+        $task = JRequest::getVar('task');
+        
+        if ( $row->save() )
+        {
+            $model->setId( $row->id );
+            $model->clearCache();
+            
+            $this->messagetype  = 'message';
+            $this->message      = JText::_( 'Saved' );
+        
+            $dispatcher = JDispatcher::getInstance();
+            $dispatcher->trigger( 'onAfterSave'.$this->get('suffix'), array( $row ) );
+        
+            $return = $row;
+        }
+        else
+        {
+            $app = JFactory::getApplication();
+            $this->messagetype  = 'notice';
+            $this->message      = JText::_( 'Save Failed' );
+            if ($errors = $row->getErrors()) {
+                foreach ($errors as $error) {
+                    if (!empty($error)) {
+                        $app->enqueueMessage( $error, 'notice' );
+                    }
+                }
+            }
+        
+            $return = false;
+        }
+        
+        $redirect = "index.php?option=com_mediamanager&view=station&task=message";
+    
+        
+        $redirect = JRoute::_( $redirect, false );
+        $this->setRedirect( $redirect, $this->message, $this->messagetype );
+        
+        return $return;
+
+    }
+
+    function message()
+    {
+
+      
+    
+        $view   = $this->getView( $this->get('suffix'), 'html' );
+       
+        $view->setLayout( 'message' );
+        
+        $view->setTask(true);
+        
+        $view->display();
+        //$this->footer();
+        return $this;     
+
 
     }
 

@@ -1,4 +1,4 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
+  <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 <?php $row = $vars->row; 
 
 ?>
@@ -22,7 +22,7 @@ $params = $vars->row->params;
                                 case 'mp4': ?>
 
                        <li data-type="vid" data-id="<?php echo $item->mediafile_id; ?>">         
-                       <video autobuffer>         
+                       <video autobuffer preload>         
                                   <?php   
                     $string = unserialize($item->file_params);
                     foreach ($string as $skey => $value) : ?>

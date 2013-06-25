@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_MEDIAMANAGER_STATION_FORM">
+		<message>
+			<![CDATA[COM_MEDIAMANAGER_MEDIA_SINGLE_LAYOUT_DESC]]>
+		</message>
+	</layout>
+    
+    <!-- Joomla 1.6+ only -->
+    <fields name="request">
+        <fieldset name="request">
+            <field name="task" type="hidden" default="form" />
+        </fieldset>
+    </fields>
+    
+
+</metadata>
