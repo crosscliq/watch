@@ -31,7 +31,8 @@ class MediaManagerControllerStation extends MediaManagerController
 
 	    // load the media item
         $model = $this->getModel( 'station' );
-        $uuid = $model->getUUID();
+        $uuid = 'f0:ae:51:00:04:ef'
+        //$uuid = $model->getUUID();
   
         $station = $model->getItembyUUID( $uuid );
        //  var_dump($station);

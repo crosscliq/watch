@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.25, for osx10.6 (i386)
 --
 -- Host: localhost    Database: kiosk
 -- ------------------------------------------------------
--- Server version	5.5.31-0ubuntu0.12.04.1
+-- Server version	5.5.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -265,7 +265,7 @@ CREATE TABLE `lsf3y_categories` (
   KEY `idx_left_right` (`lft`,`rgt`),
   KEY `idx_alias` (`alias`),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1393,6 +1393,8 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
   `phone` varchar(255) NOT NULL,
   `enabled` tinyint(4) NOT NULL,
   `media_id` int(11) NOT NULL,
+  `timezone` varchar(255) NOT NULL,
+  `data_lastupdated` datetime NOT NULL,
   PRIMARY KEY (`station_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1403,8 +1405,8 @@ CREATE TABLE `lsf3y_mediamanager_stations` (
 
 LOCK TABLES `lsf3y_mediamanager_stations` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` DISABLE KEYS */;
-INSERT INTO `lsf3y_mediamanager_stations` VALUES (1,'123412341234131','Station 1','in a cool place','','123 Fake Street','APT #14','Sandy','Utah','USA','7XC43G','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,4);
-INSERT INTO `lsf3y_mediamanager_stations` VALUES (2,'f0:ae:51:00:04:ef','In House Testing Station','','f0:ae:51:00:04:ef','344 West 400 south','','Utah','Salt lake City','USA','84084','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,5);
+INSERT INTO `lsf3y_mediamanager_stations` VALUES (1,'123412341234131','Station 1','in a cool place','','123 Fake Street','APT #14','Sandy','Utah','USA','7XC43G','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,4,'','0000-00-00 00:00:00');
+INSERT INTO `lsf3y_mediamanager_stations` VALUES (2,'f0:ae:51:00:04:ef','In House Testing Station','','f0:ae:51:00:04:ef','344 West 400 south','','Utah','Salt lake City','USA','84084','0000-00-00 00:00:00','0000-00-00 00:00:00',0.000000,0.000000,0,'',0,5,'','2013-06-24 17:12:44');
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,21 +1446,19 @@ DROP TABLE IF EXISTS `lsf3y_mediamanager_stationsrawdata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lsf3y_mediamanager_stationsrawdata` (
-  `stationrawdata_id` int(11) NOT NULL,
+  `stationrawdata_id` int(11) NOT NULL AUTO_INCREMENT,
   `station_id` int(11) NOT NULL,
   `timestamp` datetime NOT NULL,
-  `port1` int(11) NOT NULL,
-  `port2` int(11) NOT NULL,
-  `port3` int(11) NOT NULL,
-  `port4` int(11) NOT NULL,
-  `port5` int(11) NOT NULL,
-  `port6` int(11) NOT NULL,
-  `port7` int(11) NOT NULL,
-  `port8` int(11) NOT NULL,
-  `seconds` int(11) NOT NULL,
-  `volts` int(3) NOT NULL,
-  `wats` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `usbport` int(11) NOT NULL,
+  `profile` int(11) NOT NULL,
+  `charging` tinyint(11) NOT NULL,
+  `attached` tinyint(4) NOT NULL,
+  `sync` tinyint(4) NOT NULL,
+  `states` varchar(11) NOT NULL,
+  `dev_id` varchar(255) NOT NULL,
+  `dev_id2` varchar(255) NOT NULL,
+  PRIMARY KEY (`stationrawdata_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1467,6 +1467,9 @@ CREATE TABLE `lsf3y_mediamanager_stationsrawdata` (
 
 LOCK TABLES `lsf3y_mediamanager_stationsrawdata` WRITE;
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stationsrawdata` DISABLE KEYS */;
+INSERT INTO `lsf3y_mediamanager_stationsrawdata` VALUES (1,2,'2013-06-24 17:11:46',1,123,1,1,0,' R A C','1234','1234');
+INSERT INTO `lsf3y_mediamanager_stationsrawdata` VALUES (2,2,'2013-06-24 17:11:46',1,123,1,1,0,' R A C','1234','1234');
+INSERT INTO `lsf3y_mediamanager_stationsrawdata` VALUES (3,2,'2013-06-24 17:11:46',1,123,1,1,0,' R A C','1234','1234');
 /*!40000 ALTER TABLE `lsf3y_mediamanager_stationsrawdata` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2843,4 +2846,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-24 20:42:42
+-- Dump completed on 2013-06-24 20:50:30
